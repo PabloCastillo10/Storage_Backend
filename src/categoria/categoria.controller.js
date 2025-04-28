@@ -1,5 +1,5 @@
-import Producto from "../productos/productos.model";
-import Categoria from "./categoria.model";
+import Producto from "../productos/productos.model.js";
+import Categoria from "./categoria.model.js";
 import { request, response } from "express";
 
 export const saveCategory = async (req, res) => {
@@ -28,31 +28,28 @@ export const saveCategory = async (req, res) => {
 }
 
 export const getCategory = async (req = request, res = response) => {
+    const {limite = 10, desde = 0} = req.query;
+    const query = { status: true };
+
     try {
-        
-        const { limite = 10, desde = 0 } = req.body;
-        const query = { estado: true }
+        const categorias = await Categoria.find(query)
+            .skip(Number(desde))
+            .limit(Number(limite))
 
-        const [ total, categories ] = await Promise.all([
-            Categoria.countDocuments(query),
-            Categoria.find(query)
-                .skip(Number(desde))
-                .limit(Number(limite))
-        ]);
+            const total = await Categoria.countDocuments(query);
 
-        res.status(200).json({
-            success: true,
-            msg: "Categorias obtenidas exitosamente!!",
-            total,
-            categories
-        })
-
+            res.status(200).json({
+                success: true,
+                total,
+                msg: "Categorias obtenidas exitosamente!!",
+                categorias
+            })
     } catch (error) {
         return res.status(500).json({
             success: false,
-            msg: "Error al obtener las categorias",
+            msg: "Error al obtener categorias",
             error
-        });
+        })
     }
 }
 
@@ -112,12 +109,9 @@ export const deleteCategory = async (req, res = response) => {
         
         const { id } = req.params;
 
-        await Producto.updateMany(
-            { category: id },
-            { $set: { category: categoryGeneral._id } }
-        );
+        
 
-        const deleteCategory = await Categoria.findByIdAndUpdate(id, { estado: false }, { new: true });
+        const deleteCategory = await Categoria.findByIdAndUpdate(id, { status: false }, { new: true });
 
         res.status(200).json({
             success: true,
@@ -129,7 +123,7 @@ export const deleteCategory = async (req, res = response) => {
         return res.status(500).json({
             success: false,
             msg: "Error al eliminar la categoria",
-            error
+            error : error.message
             
         })
     }

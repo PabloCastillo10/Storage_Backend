@@ -26,6 +26,14 @@ const ProductSchema = Schema({
     status: {
         type: Boolean,
         default: true
+    },
+    proveedor : {
+        type: String,
+        require: [ true, "El proveedor es requerido" ]
+    },
+    fechaEntrada : {
+        type: Date,
+        default: Date.now,
     }
 }, {
     timestamps: true,

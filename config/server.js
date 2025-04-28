@@ -6,6 +6,9 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import {dbConnection} from './mongo.js';
 import limiter from '../src/middlewares/validate-cant-peticiones.js';
+import categoriaRoutes from '../src/categoria/categoria.routes.js';
+import produtoRoutes from '../src/productos/productos.routes.js';
+import categoriaModel from '../src/categoria/categoria.model.js';
 
 const configurarMiddlewares = (app) => {
     app.use(express.urlencoded({extended: false}));
@@ -16,7 +19,9 @@ const configurarMiddlewares = (app) => {
     app.use(limiter);
 }
 
-const configurarRutas = () => {
+const configurarRutas = (app) => {
+    app.use('/almacenadora/categorias', categoriaRoutes)
+    app.use('/almacenadora/productos', produtoRoutes);
 }
 
 const conectarDB = async  () => {
