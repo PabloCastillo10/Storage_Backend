@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "681030a47fbe35a01236a00f"
+  },
+  "name": "carnets",
+  "description": "ola",
+  "status": true
+},
+{
+  "_id": {
+    "$oid": "6810330c7fbe35a01236a022"
+  },
+  "name": "ejemplo update",
+  "description": "gg",
+  "status": true
+}]

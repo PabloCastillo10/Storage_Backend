@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "681031497fbe35a01236a019"
+  },
+  "name": "Proveedor Ejemplo update",
+  "contact": "ejemploUpdate@email.com",
+  "products": [
+    {
+      "$oid": "681033357fbe35a01236a025"
+    }
+  ],
+  "status": true,
+  "createdAt": {
+    "$date": "2025-04-29T01:54:17.406Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-29T02:03:57.846Z"
+  }
+}]

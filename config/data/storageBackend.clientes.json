@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "68103daf09211e56ff454839"
+  },
+  "name": "L Sánchez",
+  "contact": "LSanchez@example.com",
+  "products": [
+    {
+      "$oid": "681030ae7fbe35a01236a012"
+    }
+  ],
+  "status": false,
+  "createdAt": {
+    "$date": "2025-04-29T02:47:11.463Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-29T02:53:30.054Z"
+  }
+}]

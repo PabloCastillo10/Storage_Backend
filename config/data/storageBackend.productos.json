@@ -1,0 +1,44 @@
+[{
+  "_id": {
+    "$oid": "681030ae7fbe35a01236a012"
+  },
+  "name": "Libros Mentalidad",
+  "description": "Ganadora",
+  "price": 1700,
+  "stock": 49,
+  "categoria": {
+    "$oid": "681030a47fbe35a01236a00f"
+  },
+  "status": true,
+  "fechaEntrada": {
+    "$date": "2024-04-28T00:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-04-29T01:51:42.973Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-29T02:52:52.447Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681033357fbe35a01236a025"
+  },
+  "name": "Ejemplo update",
+  "description": "gg",
+  "price": 1,
+  "stock": 1,
+  "categoria": {
+    "$oid": "6810330c7fbe35a01236a022"
+  },
+  "status": true,
+  "fechaEntrada": {
+    "$date": "2024-04-28T00:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-04-29T02:02:29.206Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-29T02:52:52.440Z"
+  }
+}]
