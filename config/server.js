@@ -10,6 +10,7 @@ import categoriaRoutes from '../src/categoria/categoria.routes.js';
 import produtoRoutes from '../src/productos/productos.routes.js';
 import proveedorRoutes from "../src/proveedores/proveedor.routes.js";
 import clienteRoutes from "../src/clientes/cliente.routes.js";
+import movimientoRoutes from "../src/movimientos/movimiento.routes.js"
 
 const configurarMiddlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -25,6 +26,7 @@ const configurarRutas = (app) => {
     app.use('/almacenadora/productos', produtoRoutes);
     app.use('/almacenadora/proveedores', proveedorRoutes);
     app.use('/almacenadora/clientes', clienteRoutes);
+    app.use('/almacenadora/movimientos', movimientoRoutes);
 }
 
 const conectarDB = async () => {
