@@ -29,11 +29,10 @@ export const saveProveedor = async (req, res) => {
             proveedor: proveedorGuardado,
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             success: false,
             msg: "Error saving Proveedor!",
-            error,
+            error: error.message
         });
     }
 };
@@ -48,10 +47,9 @@ export const getProveedores = async (req, res) => {
             proveedores,
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             msg: "Error finding Proveedores!",
-            error,
+            error: error.message
         });
     }
 };
@@ -74,10 +72,9 @@ export const getProveedoresById = async (req, res) => {
             proveedor,
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             msg: "Error getting Proveedor!",
-            error,
+            error: error.message
         });
     }
 };
@@ -111,10 +108,9 @@ export const updateProveedor = async (req, res) => {
             proveedor: proveedorActualizado,
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             msg: "Error updating Proveedor!",
-            error,
+            error: error.message
         });
     }
 };
@@ -138,10 +134,9 @@ export const deleteProveedor = async (req, res) => {
             proveedor,
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             msg: "Error deleting Proveedor!",
-            error,
+            error: error.message
         });
     }
 };

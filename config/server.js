@@ -10,6 +10,8 @@ import categoriaRoutes from '../src/categoria/categoria.routes.js';
 import produtoRoutes from '../src/productos/productos.routes.js';
 import proveedorRoutes from "../src/proveedores/proveedor.routes.js";
 import clienteRoutes from "../src/clientes/cliente.routes.js";
+import userRoutes from "../src/users/user.routes.js";
+import { createAdmin } from '../src/users/user.controller.js';
 
 const configurarMiddlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -25,12 +27,14 @@ const configurarRutas = (app) => {
     app.use('/almacenadora/productos', produtoRoutes);
     app.use('/almacenadora/proveedores', proveedorRoutes);
     app.use('/almacenadora/clientes', clienteRoutes);
+    app.use('/almacenadora/users', userRoutes);
 }
 
 const conectarDB = async () => {
     try {
         await dbConnection();
         console.log("Conexión a la base de datos exitosa");
+        await createAdmin();
     } catch (error) {
         console.error('Error conectando a la base de datos', error);
         process.exit(1);

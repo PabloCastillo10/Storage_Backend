@@ -31,11 +31,10 @@ export const saveProduct = async (req, res) => {
             producto: productoGuardado,
         })
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             success: false,
             msg: "Error al guardar el producto",
-            error,
+            error: error.message
         })
 }}
 
@@ -47,10 +46,9 @@ export const getProducts = async (req, res) => {
             productos,
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             msg: "Error al obtener los productos",
-            error,
+            error: error.message
         });
     }
 }
@@ -72,10 +70,9 @@ export const getProductById = async (req, res) => {
             producto,
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             msg: "Error al obtener el producto",
-            error,
+            error: error.message
         });
     }
 }
@@ -115,10 +112,9 @@ export const searchFlexible = async (req, res) => {
             msg: "No se encontraron productos que coincidan",
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             msg: "Error al buscar productos",
-            error,
+            error: error.message
         });
     }
 }
@@ -152,10 +148,9 @@ export const updateProduct = async (req, res) => {
             producto: productoActualizado,
         });
       } catch (error) {
-        console.error(error);
         res.status(500).json({
             msg: "Error al actualizar el producto",
-            error,
+            error: error.message
         });
 }}
 
@@ -178,10 +173,9 @@ export const deleteProduct = async (req, res) => {
             producto,
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             msg: "Error al eliminar el producto",
-            error,
+            error: error.message
         });
     }
 }

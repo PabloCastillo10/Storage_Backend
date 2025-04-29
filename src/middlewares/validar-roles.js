@@ -1,6 +1,5 @@
 export const tieneRole = (...roles) => {
 
-
     return (req, res, next) => {
         if (!roles.includes(req.employee.role)) {
             return res.status(400).json({

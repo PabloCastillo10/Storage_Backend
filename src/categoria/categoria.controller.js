@@ -22,7 +22,7 @@ export const saveCategory = async (req, res) => {
         return res.status(500).json({
             success: false,
             msg: "Error al guardar la categoria",
-            error
+            error: error.message
         });
     }
 }
@@ -48,7 +48,7 @@ export const getCategory = async (req = request, res = response) => {
         return res.status(500).json({
             success: false,
             msg: "Error al obtener categorias",
-            error
+            error: error.message
         })
     }
 }
@@ -70,7 +70,7 @@ export const getCategoryById = async (req, res) => {
         return res.status(500).json({
             success: false,
             msg: "Error al buscar categoria",
-            error
+            error: error.message
         })
     }
 }
@@ -99,7 +99,7 @@ export const updateCategory = async (req, res = response) => {
         return res.status(500).json({
             success: false,
             msg: "Error al actualizar categoria",
-            error
+            error: error.message
         })
     }
 }
@@ -123,8 +123,7 @@ export const deleteCategory = async (req, res = response) => {
         return res.status(500).json({
             success: false,
             msg: "Error al eliminar la categoria",
-            error : error.message
-            
+            error : error.message  
         })
     }
 }
