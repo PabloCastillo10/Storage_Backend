@@ -20,7 +20,14 @@ export const registrarEntrada = async (req, res) => {
     });
  
     await movimiento.save();
-    res.status(201).json(movimiento);
+
+    const motionSaved = await Movimiento.findById(movimiento._id).populate('producto','name');
+
+    res.status(201).json({
+      Success: true, 
+      msg: 'Entrada guardada exitosamente',
+      motionSaved
+    });
   } catch (error) {
     res.status(500).json({ msg: 'Error al registrar entrada', error : error.message});
   }
@@ -41,7 +48,7 @@ export const registrarSalida = async (req, res) => {
     await producto.save();
  
     const movimiento = new Movimiento({
-      producto: productoId,
+      producto: producto._id,
       tipo: 'salida',
       cantidad,
       empleado,
@@ -50,20 +57,33 @@ export const registrarSalida = async (req, res) => {
     });
  
     await movimiento.save();
-    res.status(201).json(movimiento);
+
+    const motionSaved = await Movimiento.findById(movimiento._id).populate('producto','name');
+
+    res.status(201).json({
+      Success: true, 
+      msg: 'Salida guardada exitosamente',
+      motionSaved
+    });
   } catch (error) {
-    res.status(500).json({ msg: 'Error al registrar salida', error });
+    res.status(500).json({ msg: 'Error al registrar salida', error: error.message});
   }
 };
  
 // Obtener historial por producto
 export const historialMovimientos = async (req, res) => {
   try {
-    const { idProducto } = req.params;
+    const { id } = req.params;
  
-    const movimientos = await Movimiento.find({ producto: idProducto }).sort({ fecha: -1 });
-    res.json(movimientos);
+    const movimientos = await Movimiento.find({ producto: id }).populate('producto', 'name');
+    
+    const presentacionMovimientos = movimientos.map(movimiento => ({
+      ...movimiento.toObject(),  // Convertimos el documento en objeto plano
+      producto: movimiento.producto.name // Solo incluimos el nombre del producto
+    }));
+
+    res.json(presentacionMovimientos);
   } catch (error) {
-    res.status(500).json({ msg: 'Error al obtener historial', error });
+    res.status(500).json({ msg: 'Error al obtener historial', error: error.message });
   }
 };
