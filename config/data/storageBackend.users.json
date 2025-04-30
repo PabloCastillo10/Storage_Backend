@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "6810d6af7dd63f87d18add04"
+  },
+  "name": "Pablo",
+  "surname": "Castillo",
+  "username": "pablo10",
+  "email": "pablo10@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$2CEstvEWWnRsS5aiHd7rrA$wZI9a+3y0KYdAqp7FxYnaFkG9QfI2qywN9gmex2zk9A",
+  "phone": "32532439",
+  "role": "EMPLOYEE",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-04-29T13:39:59.660Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-29T13:39:59.660Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6810de4217ed9342aff5db5f"
+  },
+  "name": "Kevin",
+  "surname": "Gutierrez",
+  "username": "kevin123",
+  "email": "kevin@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$7/eJWWHLG+qVATZHijxKKw$qNUwXNRWAA9jvXvIZaFCXoCyWqORgZZ/VabMLmZs4yo",
+  "phone": "32367540",
+  "role": "EMPLOYEE",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-04-29T14:12:18.383Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-29T16:35:39.899Z"
+  }
+}]

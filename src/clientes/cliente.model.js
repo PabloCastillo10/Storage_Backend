@@ -4,7 +4,7 @@ const ClienteSchema = Schema({
     name: {
         type: String,
         required: [true, "Name is required!"],
-        unique: true
+        unique: [ true, "El nombre del cliente ya existe" ]
     },
 
     contact: {
