@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "945e2bd7-8bc3-46bc-b292-31e1de1e9669",
+		"_postman_id": "f2fd1c9d-e908-4134-b2a7-33e5c6d606b6",
 		"name": "Almacenadora",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "41997069",
-		"_collection_link": "https://a44444-6430.postman.co/workspace/Storage~af3ed1c0-2b94-4b96-916b-3161f620ed37/collection/41997069-945e2bd7-8bc3-46bc-b292-31e1de1e9669?action=share&source=collection_link&creator=41997069"
+		"_exporter_id": "37589631"
 	},
 	"item": [
 		{
@@ -20,7 +19,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"carnets\",\r\n    \"description\" : \"ola\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"ejemplo\",\r\n    \"description\" : \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,7 +75,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/categorias/6810018fd9979db6354a9601",
+							"raw": "http://localhost:3000/almacenadora/categorias/68110f5c162b42d7038ff513",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -85,7 +84,7 @@
 							"path": [
 								"almacenadora",
 								"categorias",
-								"6810018fd9979db6354a9601"
+								"68110f5c162b42d7038ff513"
 							]
 						}
 					},
@@ -599,16 +598,16 @@
 			]
 		},
 		{
-			"name": "Users",
+			"name": "Movimientos",
 			"item": [
 				{
-					"name": "Register",
+					"name": "registrarEntrada",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Kevin\",\r\n  \"surname\": \"Gutierrez\",\r\n  \"username\": \"Kevin123\",\r\n  \"email\": \"kevin@gmail.com\",\r\n  \"password\": \"123456\",\r\n  \"phone\": \"32367545\",\r\n  \"role\": \"ADMIN\"\r\n}",
+							"raw": "{\r\n    \"nombre\":\"Libros Mentalidad\",\r\n    \"cantidad\":5,\r\n    \"empleado\":\"Pedro Pascal\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -616,7 +615,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/register",
+							"raw": "http://localhost:3000/almacenadora/movimientos/entry",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -624,21 +623,21 @@
 							"port": "3000",
 							"path": [
 								"almacenadora",
-								"users",
-								"register"
+								"movimientos",
+								"entry"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Login",
+					"name": "registrarSalida",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"admin@gmail.com\",\r\n  \"username\": \"administrador\",\r\n  \"password\": \"Admin100\"\r\n}",
+							"raw": "{\r\n    \"nombre\":\"Libros Mentalidad\",\r\n    \"cantidad\":10,\r\n    \"empleado\":\"Pedro Pascal\",\r\n    \"motivo\": \"Venta Libreria\",\r\n    \"destino\": \"Escuintla\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -646,7 +645,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/login",
+							"raw": "http://localhost:3000/almacenadora/movimientos/exit",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -654,20 +653,20 @@
 							"port": "3000",
 							"path": [
 								"almacenadora",
-								"users",
-								"login"
+								"movimientos",
+								"exit"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Listar",
+					"name": "verRegistros",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/",
+							"raw": "http://localhost:3000/almacenadora/movimientos/?id=68110fa9162b42d7038ff51d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -675,138 +674,14 @@
 							"port": "3000",
 							"path": [
 								"almacenadora",
-								"users",
+								"movimientos",
 								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/6810d6af7dd63f87d18add04",
-							"protocol": "http",
-							"host": [
-								"localhost"
 							],
-							"port": "3000",
-							"path": [
-								"almacenadora",
-								"users",
-								"6810d6af7dd63f87d18add04"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEwZmU3N2NlYWU4Mjk5NTE2YzZkMjIiLCJpYXQiOjE3NDU5NDQzMzYsImV4cCI6MTc0NTk1MTUzNn0.5KwOONb7ZIDv2YKZU1bNFd226DxAftd6pEjPioA1mcs",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Kevin\",\r\n    \"surname\": \"Gutierrez\",\r\n    \"username\": \"Kevin123\",\r\n    \"email\": \"kevi@gmail.com\",\r\n    \"currentPassword\": \"123456\",\r\n    \"password\": \"1234567\",\r\n    \"phone\": \"32367540\",\r\n    \"role\": \"ADMIN\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"query": [
+								{
+									"key": "id",
+									"value": "68110fa9162b42d7038ff51d"
 								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/6810fe77ceae8299516c6d22",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"almacenadora",
-								"users",
-								"6810fe77ceae8299516c6d22"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Role",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEwZmU3N2NlYWU4Mjk5NTE2YzZkMjIiLCJpYXQiOjE3NDU5NDQzMzYsImV4cCI6MTc0NTk1MTUzNn0.5KwOONb7ZIDv2YKZU1bNFd226DxAftd6pEjPioA1mcs",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"role\": \"ADMIN\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/role/6810fe77ceae8299516c6d22",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"almacenadora",
-								"users",
-								"role",
-								"6810fe77ceae8299516c6d22"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEwZmU3N2NlYWU4Mjk5NTE2YzZkMjIiLCJpYXQiOjE3NDU5NDQzMzYsImV4cCI6MTc0NTk1MTUzNn0.5KwOONb7ZIDv2YKZU1bNFd226DxAftd6pEjPioA1mcs",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"Kevin123\",\r\n    \"password\": \"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/6810de4217ed9342aff5db5f",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"almacenadora",
-								"users",
-								"6810de4217ed9342aff5db5f"
 							]
 						}
 					},
