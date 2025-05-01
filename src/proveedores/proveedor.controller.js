@@ -1,21 +1,17 @@
+import { response, request } from "express";
 import Proveedor from "../proveedores/proveedor.model.js";
 import Producto from "../productos/productos.model.js";
 
 export const saveProveedor = async (req, res) => {
     try {
         const data = req.body;
-        const producto = await Producto.findOne({ name: data.producto });
+        const nombresProductos = Array.isArray(data.products) ? data.products : [data.products];
 
-        if (!producto) {
-            return res.status(404).json({
-                success: false,
-                msg: 'Product not found!',
-            });
-        }
+        const productos = await Producto.find({ name: { $in: nombresProductos } });
 
         const newProveedor = new Proveedor({
             ...data,
-            products: [producto._id],
+            products: productos.map(p => p._id),
         });
 
         await newProveedor.save();
@@ -37,18 +33,29 @@ export const saveProveedor = async (req, res) => {
     }
 };
 
-export const getProveedores = async (req, res) => {
+export const getProveedores = async (req = request, res = response) => {
     try {
-        const proveedores = await Proveedor.find()
-            .populate("products", "name");
-        
+        const { limite = 10, desde = 0 } = req.query;
+        const query = { status: true };
+
+        const [total, proveedores] = await Promise.all([
+            Proveedor.countDocuments(query),
+            Proveedor.find(query)
+                .populate('products', 'name')
+                .skip(Number(desde))
+                .limit(Number(limite))
+        ]);
+
         res.status(200).json({
-            msg: "Found Proveedores!",
-            proveedores,
+            success: true,
+            total,
+            proveedores
         });
+
     } catch (error) {
         res.status(500).json({
-            msg: "Error finding Proveedores!",
+            success: false,
+            message: "Error al obtener proveedores!",
             error: error.message
         });
     }
@@ -82,7 +89,7 @@ export const getProveedoresById = async (req, res) => {
 export const updateProveedor = async (req, res) => {
     try {
         const { id } = req.params;
-        const { producto, ...data } = req.body;
+        const { products, ...data } = req.body; // Extraemos los productos (nombres)
         const proveedor = await Proveedor.findById(id);
 
         if (!proveedor) {
@@ -91,17 +98,17 @@ export const updateProveedor = async (req, res) => {
             });
         }
 
-        if (producto) {
-            const productoActual = await Producto.findOne({ name: producto });
-            if (!productoActual) {
-                return res.status(404).json({
-                    msg: `Product ${producto} does not exist!`,
-                });
-            }
-            data.products = [productoActual._id];
+        if (products) {
+            // Buscar los productos por nombre y obtener sus ObjectIds
+            const productosActualizados = await Producto.find({ name: { $in: products } });
+
+            // Si se encuentran los productos, asignar sus ObjectIds
+            data.products = productosActualizados.map(producto => producto._id);
         }
 
-        const proveedorActualizado = await Proveedor.findByIdAndUpdate(id, data, { new: true });
+        // Actualizamos el proveedor con los datos nuevos
+        const proveedorActualizado = await Proveedor.findByIdAndUpdate(id, data, { new: true })
+            .populate('products', 'name'); // Esto rellena los productos con su nombre
 
         res.status(200).json({
             msg: "Proveedor updated!",

@@ -13,4 +13,12 @@
   "name": "ejemplo update",
   "description": "gg",
   "status": true
+},
+{
+  "_id": {
+    "$oid": "6812d49110d49138d4edaf94"
+  },
+  "name": "Prueba",
+  "description": "Prueba",
+  "status": true
 }]

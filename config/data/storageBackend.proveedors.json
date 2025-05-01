@@ -1,19 +1,38 @@
 [{
   "_id": {
-    "$oid": "681031497fbe35a01236a019"
+    "$oid": "6813c0f177cfb68000d2b748"
   },
-  "name": "Proveedor Ejemplo update",
-  "contact": "ejemploUpdate@email.com",
+  "name": "Andrea",
+  "contact": "andrea@email.com",
   "products": [
     {
-      "$oid": "681033357fbe35a01236a025"
+      "$oid": "681030ae7fbe35a01236a012"
     }
   ],
   "status": true,
   "createdAt": {
-    "$date": "2025-04-29T01:54:17.406Z"
+    "$date": "2025-05-01T18:44:01.029Z"
   },
   "updatedAt": {
-    "$date": "2025-04-29T02:03:57.846Z"
+    "$date": "2025-05-01T18:44:01.029Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6813c25b3576fb3030590b53"
+  },
+  "name": "Silvia",
+  "contact": "silvia@email.com",
+  "products": [
+    {
+      "$oid": "6812d49f10d49138d4edaf97"
+    }
+  ],
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-01T18:50:04.000Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-01T18:50:04.000Z"
   }
 }]

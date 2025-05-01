@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f2fd1c9d-e908-4134-b2a7-33e5c6d606b6",
+		"_postman_id": "3c65ff01-224c-4f59-b80a-bd8e12e0d946",
 		"name": "Almacenadora",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37589631"
+		"_exporter_id": "41656904"
 	},
 	"item": [
 		{
@@ -19,7 +19,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"ejemplo\",\r\n    \"description\" : \"123\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Prueba\",\r\n    \"description\" : \"Prueba\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -162,7 +162,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Libros Mentalidad\",\r\n    \"description\" : \"Ganadora\",\r\n    \"price\" : \"1700\",\r\n    \"stock\" : \"50\",\r\n    \"categoria\" : \"libros\",\r\n    \"fechaEntrada\" : \"2024-04-28\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Producto Prueba 1\",\r\n    \"description\" : \"Descripción Prueba 1\",\r\n    \"price\" : \"1000\",\r\n    \"stock\" : \"50\",\r\n    \"categoria\" : \"Prueba\",\r\n    \"fechaEntrada\" : \"2024-04-28\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -327,7 +327,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Proveedor Ejemplo\",\r\n  \"contact\": \"ejemplo@email.com\",\r\n  \"producto\": \"Libros Mentalidad\"\r\n}",
+							"raw": "{\r\n  \"name\": \"ej\",\r\n  \"contact\": \"ej@email.com\",\r\n  \"products\": [\"Producto Prueba 1\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -383,7 +383,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/proveedores/681031497fbe35a01236a019",
+							"raw": "http://localhost:3000/almacenadora/proveedores/6813c0f177cfb68000d2b748",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -392,7 +392,7 @@
 							"path": [
 								"almacenadora",
 								"proveedores",
-								"681031497fbe35a01236a019"
+								"6813c0f177cfb68000d2b748"
 							]
 						}
 					},
@@ -408,7 +408,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Proveedor Ejemplo update\",\r\n  \"contact\": \"ejemploUpdate@email.com\",\r\n  \"producto\": \"Ejemplo update\"\r\n}",
+							"raw": "{\r\n  \"name\": \"FF\",\r\n  \"contact\": \"ejemploUpdate@email.com\",\r\n  \"products\": [\"Ejemplo update\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -416,7 +416,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/proveedores/681031497fbe35a01236a019",
+							"raw": "http://localhost:3000/almacenadora/proveedores/6813c2bd3576fb3030590b6c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -425,7 +425,7 @@
 							"path": [
 								"almacenadora",
 								"proveedores",
-								"681031497fbe35a01236a019"
+								"6813c2bd3576fb3030590b6c"
 							]
 						}
 					},
@@ -467,7 +467,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Luis Sánchez\",\r\n  \"contact\": \"luisSanchez@example.com\",\r\n  \"products\": [\"Ejemplo update\"]\r\n}",
+							"raw": "{\r\n  \"name\": \"Cortez\",\r\n  \"contact\": \"jCortez@example.com\",\r\n  \"products\": [\"Ejemplo update\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -523,7 +523,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/clientes/68103daf09211e56ff454839",
+							"raw": "http://localhost:3000/almacenadora/clientes/6813aaaf5e35000538e4bbc5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -532,7 +532,7 @@
 							"path": [
 								"almacenadora",
 								"clientes",
-								"68103daf09211e56ff454839"
+								"6813aaaf5e35000538e4bbc5"
 							]
 						}
 					},
@@ -548,7 +548,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"L Sánchez\",\r\n  \"contact\": \"LSanchez@example.com\",\r\n  \"products\": [\"Libros Mentalidad\"]\r\n}",
+							"raw": "{\r\n  \"name\": \"Juan\",\r\n  \"contact\": \"juan@example.com\",\r\n  \"products\": [\"Libros Mentalidad\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -556,7 +556,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/clientes/68103daf09211e56ff454839",
+							"raw": "http://localhost:3000/almacenadora/clientes/6813aaaf5e35000538e4bbc5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -565,7 +565,7 @@
 							"path": [
 								"almacenadora",
 								"clientes",
-								"68103daf09211e56ff454839"
+								"6813aaaf5e35000538e4bbc5"
 							]
 						}
 					},

@@ -29,12 +29,10 @@ export const saveCliente = async (req = request, res = response) => {
                 producto.stock -= 1;
                 await producto.save();
 
-                // Guardamos el ID del producto
                 productIds.push(producto._id);
             }
         }
 
-        // Asignamos los IDs encontrados
         const cliente = new Cliente({
             ...data,
             products: productIds
