@@ -24,6 +24,7 @@ export const saveProveedor = async (req, res) => {
             msg: "Proveedor saved!",
             proveedor: proveedorGuardado,
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -78,6 +79,7 @@ export const getProveedoresById = async (req, res) => {
             msg: "Proveedor found!",
             proveedor,
         });
+
     } catch (error) {
         res.status(500).json({
             msg: "Error getting Proveedor!",
@@ -111,6 +113,7 @@ export const updateProveedor = async (req, res) => {
             msg: "Proveedor updated!",
             proveedor: proveedorActualizado,
         });
+
     } catch (error) {
         res.status(500).json({
             msg: "Error updating Proveedor!",
@@ -137,6 +140,7 @@ export const deleteProveedor = async (req, res) => {
             msg: "Proveedor deleted!",
             proveedor,
         });
+        
     } catch (error) {
         res.status(500).json({
             msg: "Error deleting Proveedor!",
