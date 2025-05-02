@@ -4,7 +4,8 @@ const ProductSchema = Schema({
     name : {
         type : String, 
         required: [ true, "El nombre es requerido" ],
-        unique: [ true, "El nombre ingresado ya existe" ]
+        unique: [ true, "El nombre ingresado ya existe" ],
+        lowercase: true
     },
     description: {
         type: String,
