@@ -89,7 +89,7 @@ export const getProveedoresById = async (req, res) => {
 export const updateProveedor = async (req, res) => {
     try {
         const { id } = req.params;
-        const { products, ...data } = req.body; // Extraemos los productos (nombres)
+        const { products, ...data } = req.body;
         const proveedor = await Proveedor.findById(id);
 
         if (!proveedor) {
@@ -99,16 +99,13 @@ export const updateProveedor = async (req, res) => {
         }
 
         if (products) {
-            // Buscar los productos por nombre y obtener sus ObjectIds
             const productosActualizados = await Producto.find({ name: { $in: products } });
 
-            // Si se encuentran los productos, asignar sus ObjectIds
             data.products = productosActualizados.map(producto => producto._id);
         }
 
-        // Actualizamos el proveedor con los datos nuevos
         const proveedorActualizado = await Proveedor.findByIdAndUpdate(id, data, { new: true })
-            .populate('products', 'name'); // Esto rellena los productos con su nombre
+            .populate('products', 'name');
 
         res.status(200).json({
             msg: "Proveedor updated!",
