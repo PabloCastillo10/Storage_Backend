@@ -1,6 +1,7 @@
 import { request, response } from "express";
 import Producto  from "../productos/productos.model.js";
 import Categoria from "../categoria/categoria.model.js";
+import { categoriaNoExistente, existenteProductById, statusProduct, verificarProductoExistente } from "../helpers/db-validator-products.js";
 
 
 export const saveProduct = async (req, res) => {
@@ -9,12 +10,7 @@ export const saveProduct = async (req, res) => {
         const categoria = await Categoria.findOne({name: data.categoria});
         const fechaEntrada = data.fechaEntrada;
 
-        if (!categoria) {
-            return res.status(404).json({
-                success: false,
-                msg: 'Categ oría no encontrada',
-            })
-        }
+        await categoriaNoExistente(data.categoria, categoria);
 
         const newProduct = new Producto({
             ...data,
@@ -57,13 +53,11 @@ export const getProductById = async (req, res) => {
     const { id } = req.params;
 
     try {
+        await existenteProductById(id);
+
         const producto = await Producto.findById(id).populate("categoria", "name");
 
-        if (!producto) {
-            return res.status(404).json({
-                msg: `El producto con id ${id} no existe`,
-            });
-        }
+        await statusProduct(producto);
 
         res.status(200).json({
             msg: "Producto encontrado",
@@ -77,14 +71,14 @@ export const getProductById = async (req, res) => {
     }
 }
 
-
 export const searchFlexible = async (req, res) => {
     const { termino } = req.params;
 
     try {
         let productos = [];
+
         productos = await Producto.find({
-            name: { $regex: termino, $options: "i" },
+            name: termino,
             status: true,
         }).populate("categoria", "name");
 
@@ -94,9 +88,29 @@ export const searchFlexible = async (req, res) => {
                 productos,
             });
         }
-        
-        const fecha = new Date(termino);
 
+        const categorias = await Categoria.find({
+            name: { $regex: new RegExp(`^${termino}$`, 'i') },
+            status: true,
+        });
+
+        if (categorias.length > 0) {
+            const categoriaIds = categorias.map(cat => cat._id);
+
+            productos = await Producto.find({
+                categoria: { $in: categoriaIds },
+                status: true,
+            }).populate("categoria", "name");
+
+            if (productos.length > 0) {
+                return res.status(200).json({
+                    msg: "Productos encontrados por nombre de categoría",
+                    productos,
+                });
+            }
+        }
+
+        const fecha = new Date(termino);
         if (!isNaN(fecha.getTime())) {
             productos = await Producto.find({
                 fechaEntrada: { $gte: fecha },
@@ -122,26 +136,22 @@ export const searchFlexible = async (req, res) => {
 export const updateProduct = async (req, res) => {
       try {
         const {id} = req.params;
-        const {categoria, ...data} = req.body;
+        const {...data} = req.body;
+        let { name } = req.body;
+        
+        await existenteProductById(id);
+
         const producto = await Producto.findById(id);
+        await statusProduct(producto);
+        await verificarProductoExistente(name, producto);
 
-        if (!producto) {
-            return res.status(404).json({
-                msg: `El producto con id ${id} no existe`,
-            });
-        }
+        const categoria = await Categoria.findOne({name: data.categoria});
+        await categoriaNoExistente(data.categoria, categoria);
 
-        if (categoria) {
-            const categoriaActual = await Categoria.findOne({name: categoria});
-            if (!categoriaActual) {
-                return res.status(404).json({
-                    msg: `La categoría ${categoria} no existe`,
-                });
-            }
-            data.categoria = categoriaActual._id;
-        }
+        data.categoria = categoria._id;
 
-        const productoActualizado = await Producto.findByIdAndUpdate(id, data, { new: true });
+        const productoActualizado = await Producto.findByIdAndUpdate(id, data, { new: true })
+            .populate('categoria', 'name');
 
         res.status(200).json({
             msg: "Producto actualizado",
@@ -152,18 +162,17 @@ export const updateProduct = async (req, res) => {
             msg: "Error al actualizar el producto",
             error: error.message
         });
-}}
+    }
+}
 
 export const deleteProduct = async (req, res) => {
     try {
         const { id } = req.params;
-        const producto = await Producto.findById(id);
+        
+        await existenteProductById(id);
 
-        if (!producto) {
-            return res.status(404).json({
-                msg: `El producto con id ${id} no existe`,
-            });
-        }
+        const producto = await Producto.findById(id);
+        await statusProduct(producto);
 
         producto.status = false;
         await producto.save();

@@ -80,14 +80,14 @@ export const updatePerfil = async (req, id) => {
 
 export const verificarUsuarioExistente = async (username, user) => {
 
-    if (username && username == user.username) {
+    if (username && username !== user.username) {
         const existingUser = await User.findOne({ username });
 
-        if (existingUser) {
+        if (existingUser && existingUser.id !== user.id) {
             throw new Error(`El nombre de usuario ${username} ya existe en la base de datos`);
         }
     }
-};
+}
 
 export const validarPasswordUpdate = async (user, currentPassword, password) => {
 

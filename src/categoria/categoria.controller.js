@@ -1,4 +1,4 @@
-import Producto from "../productos/productos.model.js";
+import { existenteId, falsoId, verificarCategoriaExistente } from "../helpers/db-validator-categoria.js";
 import Categoria from "./categoria.model.js";
 import { request, response } from "express";
 
@@ -58,7 +58,9 @@ export const getCategoryById = async (req, res) => {
         
         const { id } = req.params;
 
+        await existenteId(id);
         const category = await Categoria.findById(id);
+        await falsoId(category);
 
         res.status(200).json({
             success: true,
@@ -67,6 +69,7 @@ export const getCategoryById = async (req, res) => {
         })
 
     } catch (error) {
+
         return res.status(500).json({
             success: false,
             msg: "Error al buscar categoria",
@@ -82,10 +85,10 @@ export const updateCategory = async (req, res = response) => {
         const { _id, ...data } = req.body;
         let { name } = req.body;
 
-        if (name) {
-            name = name.toLowerCase();
-            data.name = name;
-        }
+        await existenteId(id);
+        const category = await Categoria.findById(id);
+        await verificarCategoriaExistente(name, category);
+        await falsoId(category);
 
         const updateCategory = await Categoria.findByIdAndUpdate(id, data, { new: true });
 
@@ -96,6 +99,7 @@ export const updateCategory = async (req, res = response) => {
         })
 
     } catch (error) {
+
         return res.status(500).json({
             success: false,
             msg: "Error al actualizar categoria",
@@ -103,13 +107,15 @@ export const updateCategory = async (req, res = response) => {
         })
     }
 }
-
+    
 export const deleteCategory = async (req, res = response) => {
     try {
         
         const { id } = req.params;
 
-        
+        await existenteId(id);
+        const category = await Categoria.findById(id);
+        await falsoId(category);
 
         const deleteCategory = await Categoria.findByIdAndUpdate(id, { status: false }, { new: true });
 
@@ -120,6 +126,7 @@ export const deleteCategory = async (req, res = response) => {
         })
 
     } catch (error) {
+
         return res.status(500).json({
             success: false,
             msg: "Error al eliminar la categoria",
