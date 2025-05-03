@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "19778222-d279-41ff-8290-22d24473ad9c",
+		"_postman_id": "d927e548-5320-4a01-ae14-fe3f48913c81",
 		"name": "Almacenadora",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "42637298"
+		"_exporter_id": "41997069",
+		"_collection_link": "https://a44444-6430.postman.co/workspace/Storage~af3ed1c0-2b94-4b96-916b-3161f620ed37/collection/41997069-d927e548-5320-4a01-ae14-fe3f48913c81?action=share&source=collection_link&creator=41997069"
 	},
 	"item": [
 		{
@@ -162,7 +163,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Producto Prueba 1\",\r\n    \"description\" : \"Descripción Prueba 1\",\r\n    \"price\" : \"1000\",\r\n    \"stock\" : \"50\",\r\n    \"categoria\" : \"Prueba\",\r\n    \"fechaEntrada\" : \"2024-04-28\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Libros\",\r\n    \"description\" : \"Descripcion Libros\",\r\n    \"price\" : \"1000\",\r\n    \"stock\" : \"50\",\r\n    \"categoria\" : \"Carnets\",\r\n    \"proveedor\": \"Mario\",\r\n    \"fechaEntrada\" : \"2024-04-28\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -327,7 +328,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"ej\",\r\n  \"contact\": \"ej@email.com\",\r\n  \"products\": [\"Producto Prueba 1\"]\r\n}",
+							"raw": "{\r\n  \"name\": \"Mario\",\r\n  \"contact\": \"mario@email.com\",\r\n  \"products\": [\"Producto Prueba 1\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -607,7 +608,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Libros Mentalidad\",\r\n    \"cantidad\":5,\r\n    \"empleado\":\"Pedro Pascal\"\r\n}",
+							"raw": "{\r\n    \"productoName\": \"Libros\",\r\n    \"cantidad\":5,\r\n    \"empleado\": \"Kevin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -637,7 +638,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Guitarra\",\r\n    \"cantidad\":10,\r\n    \"empleado\":\"Pedro Pascal\",\r\n    \"motivo\": \"Venta Libreria\",\r\n    \"destino\": \"Escuintla\"\r\n}",
+							"raw": "{\r\n    \"productoName\":\"Libros\",\r\n    \"cantidad\":10,\r\n    \"empleado\":\"Jesus\",\r\n    \"motivo\": \"Venta Libreria\",\r\n    \"destino\": \"Escuintla\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -678,7 +679,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/movimientos/68150f067699b88963558392",
+							"raw": "http://localhost:3000/almacenadora/movimientos/6816562e0b40d983fe1eaaba",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -687,7 +688,7 @@
 							"path": [
 								"almacenadora",
 								"movimientos",
-								"68150f067699b88963558392"
+								"6816562e0b40d983fe1eaaba"
 							]
 						}
 					},
@@ -700,7 +701,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n //   \"empleado\":\"Juan Perez\",// ejemplo para la validacion\r\n    \"cantidad\":5,\r\n    \"tipo\":\"salida\",\r\n    \"motivo\":\"Venta viernes 2/05\",//parametros obligatorios para salida, en tipo \"entrada\" los omite\r\n    \"destino\":\"Palin\"//segundo parametro obligatorio\r\n}",
+							"raw": "{\r\n //   \"empleado\":\"Juan Perez\",// ejemplo para la validacion\r\n    \"cantidad\":5,\r\n    \"tipo\":\"entrada\",\r\n    \"motivo\":\"Venta viernes 2/05\",//parametros obligatorios para salida, en tipo \"entrada\" los omite\r\n    \"destino\":\"Palin\"//segundo parametro obligatorio\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -708,7 +709,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/movimientos/68152012e60c5084b9c94fdc",
+							"raw": "http://localhost:3000/almacenadora/movimientos/68165cf4f2e1ba15dcdc5687",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -717,7 +718,247 @@
 							"path": [
 								"almacenadora",
 								"movimientos",
-								"68152012e60c5084b9c94fdc"
+								"68165cf4f2e1ba15dcdc5687"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":  \"Jesus\",\r\n    \"surname\": \"Sis\",\r\n    \"username\": \"Sis123\",\r\n    \"email\": \"sis@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"phone\": \"47324234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Pablo10\",\r\n    \"email\": \"pablo@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxun@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxun@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/users/6810d6af7dd63f87d18add04",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"users",
+								"6810d6af7dd63f87d18add04"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE2MzA0N2E5ODBlNDEwNDRkMTU5OWIiLCJpYXQiOjE3NDYyODQ2MjAsImV4cCI6MTc0NjI5MTgyMH0.E06kwK_IPMNr2AhekMZ4gaA1glHzuUWPJRpLVXq417A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":  \"Alejandro\",\r\n    \"surname\": \"Cuxun\",\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxu@gmail.com\",\r\n    \"currentPassword\": \"12345678\",\r\n    \"password\": \"12345678\",\r\n    \"phone\": \"42874891\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/users/68163047a980e41044d1599b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"users",
+								"68163047a980e41044d1599b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE2MzA0N2E5ODBlNDEwNDRkMTU5OWIiLCJpYXQiOjE3NDYyODQ2MjAsImV4cCI6MTc0NjI5MTgyMH0.E06kwK_IPMNr2AhekMZ4gaA1glHzuUWPJRpLVXq417A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/users/role/68163047a980e41044d1599b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"users",
+								"role",
+								"68163047a980e41044d1599b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE2MmI3MDQyMmZlNWNiNzE3YzJmZDciLCJpYXQiOjE3NDYyODczNDEsImV4cCI6MTc0NjI5NDU0MX0.pBrL3UHJf6lQOGD3JcHuVeh3IhyzxewP949CEBQmLSw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Cuxun123\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/users/68163047a980e41044d1599b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"users",
+								"68163047a980e41044d1599b"
 							]
 						}
 					},

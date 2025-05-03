@@ -1,13 +1,17 @@
 import Movimiento from './movimiento.model.js';
 import Producto from '../productos/productos.model.js';
+import User from '../users/user.model.js';
  
 // Registrar entrada
 export const registrarEntrada = async (req, res) => {
   try {
-    const { nombre, cantidad, empleado } = req.body;
+    const { productoName, cantidad, empleado } = req.body;
  
-    const producto = await Producto.findOne({name: nombre});
-    if (!producto) return res.status(404).json({ msg: 'Producto no encontrado' });
+    const producto = await Producto.findOne({name: productoName.toLowerCase()});
+    if (!producto) return res.status(404).json({ msg: `Producto ${productoName} no encontrado` });
+
+    const user = await User.findOne({name: empleado.toLowerCase()});
+    if (!user || user.role === 'ADMIN') return res.status(404).json({ msg: `Empleado ${empleado} no encontrado` });
  
     producto.stock += cantidad;
     await producto.save();
@@ -16,12 +20,12 @@ export const registrarEntrada = async (req, res) => {
       producto: producto.id,
       tipo: 'entrada',
       cantidad,
-      empleado,
+      empleado: user.id,
     });
  
     await movimiento.save();
 
-    const motionSaved = await Movimiento.findById(movimiento._id).populate('producto', 'name');
+    const motionSaved = await Movimiento.findById(movimiento._id).populate('producto', 'name').populate('empleado', 'name');
 
     const response = {
       _id: motionSaved._id,
@@ -29,10 +33,10 @@ export const registrarEntrada = async (req, res) => {
       tipo: motionSaved.tipo,
       cantidad: motionSaved.cantidad,
       fecha: motionSaved.fecha,
-      empleado: motionSaved.empleado,
+      empleado: motionSaved.empleado.name,
     };
 
-    res.status(201).json({
+    res.status(200).json({
       Success: true,
       msg: 'Entrada guardada exitosamente',
       response
@@ -46,10 +50,13 @@ export const registrarEntrada = async (req, res) => {
 // Registrar salida
 export const registrarSalida = async (req, res) => {
   try {
-    const { nombre, cantidad, empleado, motivo, destino } = req.body;
+    const { productoName, cantidad, motivo, destino, empleado } = req.body;
  
-    const producto = await Producto.findOne({name: nombre});
-    if (!producto) return res.status(404).json({ msg: 'Producto no encontrado' });
+    const producto = await Producto.findOne({name: productoName.toLowerCase()});
+    if (!producto) return res.status(404).json({ msg: `Producto ${productoName} no encontrado` });
+
+    const user = await User.findOne({name: empleado.toLowerCase()});
+    if (!user || user.role === 'ADMIN') return res.status(404).json({ msg: `Empleado ${empleado} no encontrado` });
  
     if (producto.stock < cantidad)
       return res.status(400).json({ msg: 'Stock insuficiente' });
@@ -58,17 +65,17 @@ export const registrarSalida = async (req, res) => {
     await producto.save();
  
     const movimiento = new Movimiento({
-      producto: producto._id,
+      producto: producto.id,
       tipo: 'salida',
       cantidad,
-      empleado,
+      empleado: user.id,
       motivo,
       destino,
     });
  
     await movimiento.save();
 
-    const motionSaved = await Movimiento.findById(movimiento._id).populate('producto','name');
+    const motionSaved = await Movimiento.findById(movimiento._id).populate('producto','name').populate('empleado', 'name');
 
     const response = {
       _id: motionSaved._id,
@@ -76,7 +83,7 @@ export const registrarSalida = async (req, res) => {
       tipo: motionSaved.tipo,
       cantidad: motionSaved.cantidad,
       fecha: motionSaved.fecha,
-      empleado: motionSaved.empleado,
+      empleado: motionSaved.empleado.name,
     };
 
     res.status(201).json({
@@ -89,17 +96,32 @@ export const registrarSalida = async (req, res) => {
   }
 };
  
-// Obtener historial por producto
 export const historialMovimientos = async (req, res) => {
   try {
     const { id } = req.params;
- 
-    const movimientos = await Movimiento.find({ producto: id }).populate('producto', 'name');
-    
-    const presentacionMovimientos = movimientos.map(movimiento => ({
-      ...movimiento.toObject(),  // Convertimos el documento en objeto plano
-      producto: movimiento.producto.name // Solo incluimos el nombre del producto
-    }));
+
+    const producto = await Producto.findById(id);
+    if (!producto) {
+      return res.status(404).json({ msg: `Producto con ID '${id}' no encontrado` });
+    }
+
+    const movimientos = await Movimiento.find({ producto: id })
+      .sort({ fecha: -1 })
+      .populate('producto', 'name')
+      .populate('empleado', 'name');
+
+    if (movimientos.length === 0) {
+      return res.status(200).json({ msg: `El producto '${producto.name}' no tiene movimientos registrados` });
+    }
+
+    const presentacionMovimientos = movimientos.map(movimiento => {
+      const movObj = movimiento.toObject();
+      return {
+        ...movObj,
+        producto: movimiento.producto?.name || 'Producto eliminado',
+        empleado: movimiento.empleado?.name || 'Empleado eliminado',
+      };
+    });
 
     res.json(presentacionMovimientos);
   } catch (error) {
@@ -116,7 +138,7 @@ export const editarMovimiento = async (req, res) => {
     if (!movimiento) return res.status(404).json({ msg: 'Movimiento no encontrado' });
 
     const producto = await Producto.findById(movimiento.producto);
-    if (!producto) return res.status(404).json({ msg: 'Producto no encontrado' });
+    if (!producto) return res.status(404).json({ msg: `Producto no encontrado` });
 
     // Primero revertimos el movimiento original
     if (movimiento.tipo === 'entrada') {
@@ -149,7 +171,7 @@ export const editarMovimiento = async (req, res) => {
     await producto.save();
     await movimiento.save();
 
-    const actualizado = await Movimiento.findById(movimiento._id).populate('producto', 'name');
+    const actualizado = await Movimiento.findById(movimiento._id).populate('producto', 'name').populate('empleado', 'name');
 
     res.json({
       Success: true,

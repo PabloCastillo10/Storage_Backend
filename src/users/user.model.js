@@ -4,7 +4,8 @@ const UserSchema = Schema({
     name: {
         type: String,
         required: [ true, "El nombre es requerido" ],
-        maxlength: [ 25, "El nombre tiene más de 25 caracteres" ]
+        maxlength: [ 25, "El nombre tiene más de 25 caracteres" ],
+        lowercase: true
     },
     surname: {
         type: String,
@@ -25,14 +26,11 @@ const UserSchema = Schema({
     password: {
         type: String,
         required: [ true, "La contraseña es requerida" ],
-        minlength: [ 8, "La contraseña debe contener al menos 8 caracteres" ],
     },
     phone: {
         type: String,
-        required: [ true, "El número de telefono es requerido" ],
-        maxlength: [ 8, "El número de telefono tiene más de 8 caracteres" ],
-        minlength: [ 8, "El número de telefono debe contener al menos 8 caracteres" ]
-    },
+        required: [true, "El número de teléfono es requerido"],
+    },    
     role: {
         type: String,
         enum: [ "ADMIN", "EMPLOYEE" ],

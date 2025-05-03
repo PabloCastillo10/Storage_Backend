@@ -4,7 +4,8 @@ const ProveedorSchema = Schema({
     name: {
         type: String,
         required: [true, "Name is required!"],
-        unique: [ true, "El nombre del proveedor ya existe" ]
+        unique: [ true, "El nombre del proveedor ya existe" ],
+        lowercase: true
     },
 
     contact: {

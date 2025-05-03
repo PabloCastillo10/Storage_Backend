@@ -19,8 +19,8 @@ const movimientoSchema = new mongoose.Schema({
         default: Date.now()
     },
     empleado: { 
-        type: String, 
-        required: true 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', required: true
     },
     motivo: { 
         type: String // solo para salidas

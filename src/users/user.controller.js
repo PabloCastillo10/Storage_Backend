@@ -2,7 +2,7 @@ import User from "./user.model.js";
 import { hash } from "argon2";
 import { generateJWT } from "../helpers/generate-jwt.js";
 import { request, response } from "express";
-import { coincidirUsername, crearAdminSiNoExiste, existeUser, existeUserById, noActualizarAdmin, pedirPassword, soloAdmin, statusUser, updatePerfil, validarPasswordParaEliminar, validarPasswordUpdate, validarUsernameParaEliminar, verificarContraseña, verificarUsuarioExistente } from "../helpers/db-validator-users.js";
+import { coincidirUsername, crearAdminSiNoExiste, existeUser, existeUserById, noActualizarAdmin, pedirPassword, phoneLength, soloAdmin, statusUser, updatePerfil, validarPasswordParaEliminar, validarPasswordUpdate, validarUsernameParaEliminar, verificarContraseña, verificarUsuarioExistente } from "../helpers/db-validator-users.js";
 
 export const login = async (req, res) => {
 
@@ -35,8 +35,8 @@ export const login = async (req, res) => {
             }
         });
 
-
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             success: false,
             msg: "Error al iniciar sesión",
@@ -49,6 +49,9 @@ export const register = async (req, res) => {
     try {
 
         const data = req.body;
+        const { phone } = req.body;
+
+        await phoneLength(phone);
 
         const encryptedPassword = await hash(data.password);
 
@@ -112,9 +115,10 @@ export const getUserById = async (req, res) => {
         
         const { id } = req.params;
 
+        await existeUserById(id);
+        
         const user = await User.findById(id);
         
-        await existeUserById(id);
         await statusUser(user);
 
         res.status(200).json({
@@ -136,17 +140,18 @@ export const updateUser = async (req, res = response) => {
 
         const { id } = req.params;
         const { _id, email, role, password, currentPassword, ...data } = req.body;
-        let { username } = req.body;
+        let { username, phone } = req.body;
         
         await existeUserById(id);
 
         const user = await User.findById(id);
 
+        await phoneLength(phone);
         await noActualizarAdmin(id);
         await updatePerfil(req, id);
         await verificarUsuarioExistente(username, user);
         await statusUser(user);
-        await validarPasswordUpdate(user, currentPassword, password)
+        await validarPasswordUpdate(user, password, currentPassword)
 
         const updateUser = await User.findByIdAndUpdate(id, data, {new: true});
 

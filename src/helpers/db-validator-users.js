@@ -89,7 +89,7 @@ export const verificarUsuarioExistente = async (username, user) => {
     }
 }
 
-export const validarPasswordUpdate = async (user, currentPassword, password) => {
+export const validarPasswordUpdate = async (user, password, currentPassword) => {
 
     if (password) {
         if (!currentPassword) {
@@ -102,9 +102,9 @@ export const validarPasswordUpdate = async (user, currentPassword, password) => 
             throw new Error('Contraseña actual incorrecta');
         }
 
-        return await hash(password);
+        user.password = await hash(password);
+        await user.save();
     }
-    return null;
 }
 
 export const soloAdmin = async (req) => {
@@ -129,6 +129,13 @@ export const pedirPassword = async (password) => {
 export const coincidirUsername = async (username, user) => {
     if (user.username.toLowerCase() !== username.toLowerCase()) {
         throw new Error('El nombre de usuario es incorrecto');
+    }
+}
+
+export const phoneLength = async (phone = ' ') => {
+
+    if (phone.length > 8 || phone.length < 8) {
+        throw new Error('El número de telefono debe contener exactamente 8 caracteres');
     }
 }
 

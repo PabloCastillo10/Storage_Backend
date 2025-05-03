@@ -139,7 +139,7 @@ export const searchFlexible = async (req, res) => {
 }
 
 export const updateProduct = async (req, res) => {
-      try {
+    try {
         const {id} = req.params;
         const {...data} = req.body;
         let { name } = req.body;
@@ -153,6 +153,9 @@ export const updateProduct = async (req, res) => {
         const categoria = await Categoria.findOne({name: data.categoria});
         await categoriaNoExistente(data.categoria, categoria);
 
+        const proveedor = await Proveedor.findOne({name: data.proveedor});
+        await existenteProveedor(data.proveedor, proveedor);
+
         data.categoria = categoria._id;
 
         const productoActualizado = await Producto.findByIdAndUpdate(id, data, { new: true })
@@ -162,6 +165,7 @@ export const updateProduct = async (req, res) => {
             msg: "Producto actualizado",
             producto: productoActualizado,
         });
+
       } catch (error) {
         console.log(error);
         res.status(500).json({
