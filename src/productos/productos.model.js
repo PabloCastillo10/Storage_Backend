@@ -29,7 +29,8 @@ const ProductSchema = Schema({
         default: true
     },
     proveedor : {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Proveedor',
         require: [ true, "El proveedor es requerido" ]
     },
     fechaEntrada : {

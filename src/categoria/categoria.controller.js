@@ -42,7 +42,7 @@ export const getCategory = async (req = request, res = response) => {
                 success: true,
                 total,
                 msg: "Categorias obtenidas exitosamente!!",
-                categorias
+                categorias : categorias
             })
     } catch (error) {
         return res.status(500).json({

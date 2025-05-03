@@ -50,7 +50,7 @@ export const getProveedores = async (req = request, res = response) => {
         res.status(200).json({
             success: true,
             total,
-            proveedores
+            proveedores : proveedores,
         });
 
     } catch (error) {
@@ -77,7 +77,7 @@ export const getProveedoresById = async (req, res) => {
 
         res.status(200).json({
             msg: "Proveedor found!",
-            proveedor,
+            proveedor: proveedor,
         });
 
     } catch (error) {

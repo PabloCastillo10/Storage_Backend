@@ -35,3 +35,9 @@ export const categoriaNoExistente = async (name, categoria) => {
         throw new Error(`La categoria ${ name } no se encontro`);
     }
 }
+ 
+export const existenteProveedor = async (name, proveedor) => {
+    if (!proveedor || proveedor.status === false) {
+        throw new Error(`El proveedor ${ name } no se encontro`);
+    }
+}

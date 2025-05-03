@@ -1,25 +1,29 @@
 import { request, response } from "express";
 import Producto  from "../productos/productos.model.js";
 import Categoria from "../categoria/categoria.model.js";
-import { categoriaNoExistente, existenteProductById, statusProduct, verificarProductoExistente } from "../helpers/db-validator-products.js";
+import { categoriaNoExistente, existenteProductById, statusProduct, verificarProductoExistente, existenteProveedor } from "../helpers/db-validator-products.js";
+import Proveedor from "../proveedores/proveedor.model.js";
 
 
 export const saveProduct = async (req, res) => {
     try {
         const data = req.body;
         const categoria = await Categoria.findOne({name: data.categoria});
+        const proveedor = await Proveedor.findOne({name: data.proveedor});
         const fechaEntrada = data.fechaEntrada;
 
         await categoriaNoExistente(data.categoria, categoria);
+        await existenteProveedor(data.proveedor, proveedor);
 
         const newProduct = new Producto({
             ...data,
             categoria: categoria._id,
+            proveedor: proveedor._id,
             fechaEntrada : fechaEntrada || Date.now(),
         })
         await newProduct.save();
 
-        const productoGuardado = await Producto.findById(newProduct._id).populate("categoria", "name");
+        const productoGuardado = await Producto.findById(newProduct._id).populate("categoria", "name").populate("proveedor", "name");
 
         res.status(200).json({
             success: true,
@@ -27,16 +31,16 @@ export const saveProduct = async (req, res) => {
             producto: productoGuardado,
         })
     } catch (error) {
+        console.log(error);
         res.status(500).json({
+            msg: error.message,
             success: false,
-            msg: "Error al guardar el producto",
-            error: error.message
         })
 }}
 
 export const getProducts = async (req, res) => {
     try {
-        const productos = await Producto.find().populate("categoria","name");
+        const productos = await Producto.find({status: true}).populate("categoria","name").populate("proveedor", "name");
         res.status(200).json({
             msg: "Productos obtenidos",
             productos,
@@ -80,7 +84,7 @@ export const searchFlexible = async (req, res) => {
         productos = await Producto.find({
             name: termino,
             status: true,
-        }).populate("categoria", "name");
+        }).populate("categoria", "name").populate("proveedor", "name");
 
         if (productos.length > 0) {
             return res.status(200).json({
@@ -100,7 +104,8 @@ export const searchFlexible = async (req, res) => {
             productos = await Producto.find({
                 categoria: { $in: categoriaIds },
                 status: true,
-            }).populate("categoria", "name");
+            }).populate("categoria", "name")
+            .populate("proveedor", "name");
 
             if (productos.length > 0) {
                 return res.status(200).json({
@@ -115,7 +120,7 @@ export const searchFlexible = async (req, res) => {
             productos = await Producto.find({
                 fechaEntrada: { $gte: fecha },
                 status: true,
-            }).populate("categoria", "name");
+            }).populate("categoria", "name").populate("proveedor", "name");
 
             return res.status(200).json({
                 msg: "Productos encontrados por fecha de entrada",
@@ -158,6 +163,7 @@ export const updateProduct = async (req, res) => {
             producto: productoActualizado,
         });
       } catch (error) {
+        console.log(error);
         res.status(500).json({
             msg: "Error al actualizar el producto",
             error: error.message
