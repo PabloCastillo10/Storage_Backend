@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "3c65ff01-224c-4f59-b80a-bd8e12e0d946",
+		"_postman_id": "19778222-d279-41ff-8290-22d24473ad9c",
 		"name": "Almacenadora",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "41656904"
+		"_exporter_id": "42637298"
 	},
 	"item": [
 		{
@@ -637,7 +637,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Libros Mentalidad\",\r\n    \"cantidad\":10,\r\n    \"empleado\":\"Pedro Pascal\",\r\n    \"motivo\": \"Venta Libreria\",\r\n    \"destino\": \"Escuintla\"\r\n}",
+							"raw": "{\r\n    \"nombre\":\"Guitarra\",\r\n    \"cantidad\":10,\r\n    \"empleado\":\"Pedro Pascal\",\r\n    \"motivo\": \"Venta Libreria\",\r\n    \"destino\": \"Escuintla\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,11 +662,23 @@
 				},
 				{
 					"name": "verRegistros",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//EL PARAMETRO ES EL ID DEL PRODUCTO",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/movimientos/?id=68110fa9162b42d7038ff51d",
+							"raw": "http://localhost:3000/almacenadora/movimientos/68150f067699b88963558392",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -675,13 +687,37 @@
 							"path": [
 								"almacenadora",
 								"movimientos",
-								""
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "68110fa9162b42d7038ff51d"
+								"68150f067699b88963558392"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editarRegistros",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n //   \"empleado\":\"Juan Perez\",// ejemplo para la validacion\r\n    \"cantidad\":5,\r\n    \"tipo\":\"salida\",\r\n    \"motivo\":\"Venta viernes 2/05\",//parametros obligatorios para salida, en tipo \"entrada\" los omite\r\n    \"destino\":\"Palin\"//segundo parametro obligatorio\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/movimientos/68152012e60c5084b9c94fdc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"movimientos",
+								"68152012e60c5084b9c94fdc"
 							]
 						}
 					},

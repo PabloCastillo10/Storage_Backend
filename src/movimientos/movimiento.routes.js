@@ -1,7 +1,8 @@
 import express from "express";
-import {registrarEntrada, registrarSalida, historialMovimientos} from './movimiento.controller.js'
+import {registrarEntrada, registrarSalida, historialMovimientos, editarMovimiento} from './movimiento.controller.js'
 import {validarCampos}  from '../middlewares/validar-campos.js'
 import {check} from 'express-validator'
+import { validarCamposPermitidos } from "../middlewares/validar-edicion-movimiento.js";
 
 const router = express.Router()
 
@@ -16,5 +17,7 @@ router.get(
 router.post("/entry", validarCampos, registrarEntrada);
 
 router.post("/exit", validarCampos, registrarSalida);
+
+router.put('/:id', validarCamposPermitidos, validarCampos, editarMovimiento)
 
 export default router;
