@@ -1,0 +1,1 @@
+En esta carpeta si el cliente le da a la opcion de exportar, se guardara el archivo en esta carpeta
