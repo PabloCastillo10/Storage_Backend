@@ -1,5 +1,5 @@
 import express from "express";
-import { saveCategory, getCategory, getCategoryById, updateCategory, deleteCategory } from "./categoria.controller.js";
+import { saveCategory, getCategory, getCategoryById, updateCategory, deleteCategory, getCategoryByName } from "./categoria.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 
 const router = express.Router();
