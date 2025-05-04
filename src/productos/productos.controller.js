@@ -152,8 +152,10 @@ export const updateProduct = async (req, res) => {
         await verificarProductoExistente(name, producto);
 
         const categoria = await Categoria.findOne({name: data.categoria});
-        const proveedor = await Proveedor.findOne({name: data.proveedor});
         await categoriaNoExistente(data.categoria, categoria);
+
+        const proveedor = await Proveedor.findOne({ name: data.proveedor });
+        await existenteProveedor(data.proveedor, proveedor);
 
         data.categoria = categoria._id;
         data.proveedor = proveedor._id;
