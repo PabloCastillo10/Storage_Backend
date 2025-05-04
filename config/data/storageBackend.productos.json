@@ -1,66 +1,75 @@
 [{
   "_id": {
-    "$oid": "681030ae7fbe35a01236a012"
+    "$oid": "6817a6f1347ac02783776f4c"
   },
-  "name": "Libros Mentalidad",
-  "description": "Ganadora",
-  "price": 1700,
-  "stock": 48,
+  "name": "libros mentalidad",
+  "description": "Para fortalezer la mentalidad",
+  "price": 2500,
+  "stock": 150,
   "categoria": {
-    "$oid": "681030a47fbe35a01236a00f"
+    "$oid": "681775906370757af705f815"
   },
   "status": true,
+  "proveedor": {
+    "$oid": "6817ad1347db4299180965be"
+  },
   "fechaEntrada": {
-    "$date": "2024-04-28T00:00:00.000Z"
+    "$date": "2025-05-04T00:00:00.000Z"
   },
   "createdAt": {
-    "$date": "2025-04-29T01:51:42.973Z"
+    "$date": "2025-05-04T17:42:09.080Z"
   },
   "updatedAt": {
-    "$date": "2025-05-01T18:14:49.720Z"
+    "$date": "2025-05-04T18:43:51.374Z"
   }
 },
 {
   "_id": {
-    "$oid": "681033357fbe35a01236a025"
+    "$oid": "6817ac0f97290d9282ebca71"
   },
-  "name": "Ejemplo update",
-  "description": "gg",
-  "price": 1,
-  "stock": 1,
+  "name": "manzanas",
+  "description": "Manzanas dulces",
+  "price": 50,
+  "stock": 50,
   "categoria": {
-    "$oid": "6810330c7fbe35a01236a022"
+    "$oid": "681775906370757af705f815"
   },
   "status": true,
+  "proveedor": {
+    "$oid": "6817a44c347ac02783776f10"
+  },
   "fechaEntrada": {
-    "$date": "2024-04-28T00:00:00.000Z"
+    "$date": "2025-05-05T00:00:00.000Z"
   },
   "createdAt": {
-    "$date": "2025-04-29T02:02:29.206Z"
+    "$date": "2025-05-04T18:03:59.569Z"
   },
   "updatedAt": {
-    "$date": "2025-05-01T18:14:49.711Z"
+    "$date": "2025-05-04T18:03:59.569Z"
   }
 },
 {
   "_id": {
-    "$oid": "6812d49f10d49138d4edaf97"
+    "$oid": "6817af0e290412ef1ce20537"
   },
-  "name": "Producto Prueba 1",
-  "description": "Descripción Prueba 1",
-  "price": 1000,
-  "stock": 48,
+  "name": "tomate",
+  "description": "Tomates frescas",
+  "price": 50,
+  "stock": 50,
   "categoria": {
-    "$oid": "6812d49110d49138d4edaf94"
+    "$oid": "681776343bb6b2479150ad2e"
   },
   "status": true,
+  "proveedor": {
+    "$oid": "6817a610347ac02783776f15"
+  },
   "fechaEntrada": {
-    "$date": "2024-04-28T00:00:00.000Z"
+    "$date": "2025-05-06T00:00:00.000Z"
   },
   "createdAt": {
-    "$date": "2025-05-01T01:55:43.037Z"
+    "$date": "2025-05-04T18:16:46.065Z"
   },
   "updatedAt": {
-    "$date": "2025-05-01T17:07:55.887Z"
+    "$date": "2025-05-04T18:16:46.065Z"
   }
 }]

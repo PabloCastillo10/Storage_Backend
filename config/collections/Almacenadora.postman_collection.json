@@ -20,7 +20,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"carnets\",\r\n    \"description\" : \"ola\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Carne\",\r\n    \"description\" : \"Carnes de buena calidad\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,7 +76,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/categorias/6810018fd9979db6354a9601",
+							"raw": "http://localhost:3000/almacenadora/categorias/681776533bb6b2479150ad32",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -85,7 +85,7 @@
 							"path": [
 								"almacenadora",
 								"categorias",
-								"6810018fd9979db6354a9601"
+								"681776533bb6b2479150ad32"
 							]
 						}
 					},
@@ -101,7 +101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"libros\",\r\n    \"description\" : \"libros de buena calidad\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Carnes\",\r\n    \"description\" : \"Carnes de buena calidad\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -109,7 +109,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/categorias/6810018fd9979db6354a9601",
+							"raw": "http://localhost:3000/almacenadora/categorias/681776533bb6b2479150ad32",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -118,7 +118,7 @@
 							"path": [
 								"almacenadora",
 								"categorias",
-								"6810018fd9979db6354a9601"
+								"681776533bb6b2479150ad32"
 							]
 						}
 					},
@@ -133,7 +133,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/categorias/6810018fd9979db6354a9601",
+							"raw": "http://localhost:3000/almacenadora/categorias/681776533bb6b2479150ad32",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -142,7 +142,7 @@
 							"path": [
 								"almacenadora",
 								"categorias",
-								"6810018fd9979db6354a9601"
+								"681776533bb6b2479150ad32"
 							]
 						}
 					},
@@ -188,7 +188,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Libros\",\r\n    \"description\" : \"Descripcion Libros\",\r\n    \"price\" : \"1000\",\r\n    \"stock\" : \"50\",\r\n    \"categoria\" : \"Carnets\",\r\n    \"proveedor\": \"Mario\",\r\n    \"fechaEntrada\" : \"2024-04-28\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Tomate\",\r\n    \"description\" : \"Tomates frescas\",\r\n    \"price\" : \"50\",\r\n    \"stock\" : \"50\",\r\n    \"categoria\" : \"verduras\",\r\n    \"proveedor\": \"carlos\",\r\n    \"fechaEntrada\" : \"2025-05-06\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -244,7 +244,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/productos/68100cceb1b0d16d5b462021",
+							"raw": "http://localhost:3000/almacenadora/productos/6817af0e290412ef1ce20537",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -253,14 +253,14 @@
 							"path": [
 								"almacenadora",
 								"productos",
-								"68100cceb1b0d16d5b462021"
+								"6817af0e290412ef1ce20537"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Busqueda Filtrada Categoria Y Fecha",
+					"name": "Busqueda Filtrada Fecha",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -268,7 +268,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/productos/buscar/2024-04-28",
+							"raw": "http://localhost:3000/almacenadora/productos/buscar/2025-05-07",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -278,7 +278,57 @@
 								"almacenadora",
 								"productos",
 								"buscar",
-								"2024-04-28"
+								"2025-05-07"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busqueda Filtrada Categoria",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/productos/buscar/frutas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"productos",
+								"buscar",
+								"frutas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busqueda Filtrada Producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/productos/buscar/Libro mentalidad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"productos",
+								"buscar",
+								"Libro mentalidad"
 							]
 						}
 					},
@@ -294,7 +344,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Libros de Mentalidad\",\r\n    \"price\" : \"1700\",\r\n    \"categoria\" : \"aña\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Libros Mentalidad\",\r\n    \"price\" : \"2500\",\r\n    \"stock\": 150,\r\n    \"categoria\" : \"frutas\",\r\n    \"proveedor\" : \"Cortez\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -302,7 +352,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/productos/6810145376304acf12cc08df",
+							"raw": "http://localhost:3000/almacenadora/productos/6817a6f1347ac02783776f4c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -311,7 +361,7 @@
 							"path": [
 								"almacenadora",
 								"productos",
-								"6810145376304acf12cc08df"
+								"6817a6f1347ac02783776f4c"
 							]
 						}
 					},
@@ -326,7 +376,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/productos/6810140876304acf12cc08d7",
+							"raw": "http://localhost:3000/almacenadora/productos/6817a6f1347ac02783776f4c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -335,7 +385,7 @@
 							"path": [
 								"almacenadora",
 								"productos",
-								"6810140876304acf12cc08d7"
+								"6817a6f1347ac02783776f4c"
 							]
 						}
 					},
@@ -353,7 +403,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Mario\",\r\n  \"contact\": \"mario@email.com\",\r\n  \"products\": [\"Producto Prueba 1\"]\r\n}",
+							"raw": "{\r\n  \"name\": \"Cortez\",\r\n  \"contact\": \"cortez@gmail.com\",\r\n  \"products\": [\"Libro Mentalidad\", \"Manzanas\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -409,7 +459,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/proveedores/681031497fbe35a01236a019",
+							"raw": "http://localhost:3000/almacenadora/proveedores/6817a61c347ac02783776f1a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -418,7 +468,7 @@
 							"path": [
 								"almacenadora",
 								"proveedores",
-								"681031497fbe35a01236a019"
+								"6817a61c347ac02783776f1a"
 							]
 						}
 					},
@@ -434,7 +484,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Proveedor Ejemplo update\",\r\n  \"contact\": \"ejemploUpdate@email.com\",\r\n  \"producto\": \"Ejemplo update\"\r\n}",
+							"raw": "{\r\n  \"name\": \"Angel\",\r\n  \"contact\": \"angel@gmail.com\",\r\n  \"products\": [\"Libro Mentalidad\", \"Manzanas\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -442,7 +492,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/proveedores/681031497fbe35a01236a019",
+							"raw": "http://localhost:3000/almacenadora/proveedores/6817a61c347ac02783776f1a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -451,7 +501,7 @@
 							"path": [
 								"almacenadora",
 								"proveedores",
-								"681031497fbe35a01236a019"
+								"6817a61c347ac02783776f1a"
 							]
 						}
 					},
@@ -466,7 +516,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/proveedores/681031497fbe35a01236a019",
+							"raw": "http://localhost:3000/almacenadora/proveedores/6817a61c347ac02783776f1a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -475,7 +525,7 @@
 							"path": [
 								"almacenadora",
 								"proveedores",
-								"681031497fbe35a01236a019"
+								"6817a61c347ac02783776f1a"
 							]
 						}
 					},
@@ -493,7 +543,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Luis Sánchez\",\r\n  \"contact\": \"luisSanchez@example.com\",\r\n  \"products\": [\"Ejemplo update\"]\r\n}",
+							"raw": "{\r\n  \"name\": \"Daniel\",\r\n  \"contact\": \"daniel@gmail.com\",\r\n  \"products\": [\"Libros Mentalidad\", \"Tomate\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -549,7 +599,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/clientes/68103daf09211e56ff454839",
+							"raw": "http://localhost:3000/almacenadora/clientes/6817b69fe25ffd6c6e123ae0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -558,7 +608,7 @@
 							"path": [
 								"almacenadora",
 								"clientes",
-								"68103daf09211e56ff454839"
+								"6817b69fe25ffd6c6e123ae0"
 							]
 						}
 					},
@@ -574,7 +624,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"L Sánchez\",\r\n  \"contact\": \"LSanchez@example.com\",\r\n  \"products\": [\"Libros Mentalidad\"]\r\n}",
+							"raw": "{\r\n  \"name\": \"Daniel\",\r\n  \"contact\": \"daniel@gmail.com\",\r\n  \"products\": [\"Manzanas\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -582,7 +632,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/clientes/68103daf09211e56ff454839",
+							"raw": "http://localhost:3000/almacenadora/clientes/6817b69fe25ffd6c6e123ae0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -591,7 +641,7 @@
 							"path": [
 								"almacenadora",
 								"clientes",
-								"68103daf09211e56ff454839"
+								"6817b69fe25ffd6c6e123ae0"
 							]
 						}
 					},
@@ -606,7 +656,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/clientes/68103daf09211e56ff454839",
+							"raw": "http://localhost:3000/almacenadora/clientes/6817b69fe25ffd6c6e123ae0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -615,7 +665,7 @@
 							"path": [
 								"almacenadora",
 								"clientes",
-								"68103daf09211e56ff454839"
+								"6817b69fe25ffd6c6e123ae0"
 							]
 						}
 					},
@@ -633,7 +683,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"productoName\": \"Libros\",\r\n    \"cantidad\":5,\r\n    \"empleado\": \"Kevin\"\r\n}",
+							"raw": "{\r\n    \"productoName\": \"Manzanas\",\r\n    \"cantidad\": 10,\r\n    \"empleado\": \"Kevin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -663,7 +713,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"productoName\":\"Libros\",\r\n    \"cantidad\":10,\r\n    \"empleado\":\"Jesus\",\r\n    \"motivo\": \"Venta Libreria\",\r\n    \"destino\": \"Escuintla\"\r\n}",
+							"raw": "{\r\n    \"productoName\":\"Manzanas\",\r\n    \"cantidad\": 6,\r\n    \"empleado\":\"Kevin\",\r\n    \"motivo\": \"Porque se pudrieron XD\",\r\n    \"destino\": \"Basura JAJA\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -704,7 +754,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/movimientos/6816562e0b40d983fe1eaaba",
+							"raw": "http://localhost:3000/almacenadora/movimientos/6817ac0f97290d9282ebca71",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -713,7 +763,7 @@
 							"path": [
 								"almacenadora",
 								"movimientos",
-								"6816562e0b40d983fe1eaaba"
+								"6817ac0f97290d9282ebca71"
 							]
 						}
 					},
@@ -726,7 +776,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n //   \"empleado\":\"Juan Perez\",// ejemplo para la validacion\r\n    \"cantidad\":5,\r\n    \"tipo\":\"entrada\",\r\n    \"motivo\":\"Venta viernes 2/05\",//parametros obligatorios para salida, en tipo \"entrada\" los omite\r\n    \"destino\":\"Palin\"//segundo parametro obligatorio\r\n}",
+							"raw": "{\r\n    \"cantidad\": 5,\r\n    \"tipo\": \"salida\",\r\n    \"motivo\":\"Porque se pudrieron XD\",\r\n    \"destino\":\"Basura JAJAJA\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -734,7 +784,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/movimientos/68165cf4f2e1ba15dcdc5687",
+							"raw": "http://localhost:3000/almacenadora/movimientos/6817b95650174db1ddecb7f2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -743,7 +793,7 @@
 							"path": [
 								"almacenadora",
 								"movimientos",
-								"68165cf4f2e1ba15dcdc5687"
+								"6817b95650174db1ddecb7f2"
 							]
 						}
 					},
@@ -761,7 +811,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":  \"Jesus\",\r\n    \"surname\": \"Sis\",\r\n    \"username\": \"Sis123\",\r\n    \"email\": \"sis@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"phone\": \"47324234\"\r\n}",
+							"raw": "{\r\n    \"name\":  \"Alejandro\",\r\n    \"surname\": \"Cuxun\",\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxun@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"phone\": \"95673323\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -791,7 +841,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"Pablo10\",\r\n    \"email\": \"pablo@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxun@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -865,7 +915,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/6810d6af7dd63f87d18add04",
+							"raw": "http://localhost:3000/almacenadora/users/6817712df4f0705f0fb9bd9b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -874,7 +924,41 @@
 							"path": [
 								"almacenadora",
 								"users",
-								"6810d6af7dd63f87d18add04"
+								"6817712df4f0705f0fb9bd9b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Users Role",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxun@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/users/role/EMPLOYEE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"users",
+								"role",
+								"EMPLOYEE"
 							]
 						}
 					},
@@ -887,13 +971,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE2MzA0N2E5ODBlNDEwNDRkMTU5OWIiLCJpYXQiOjE3NDYyODQ2MjAsImV4cCI6MTc0NjI5MTgyMH0.E06kwK_IPMNr2AhekMZ4gaA1glHzuUWPJRpLVXq417A",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE3Njk4OGVlOTc2MzgwMTgyY2YwMjYiLCJpYXQiOjE3NDYzNjcyMDYsImV4cCI6MTc0NjM3NDQwNn0.4i94k6OQKfICi7CchTNfbmkYUXgEAatnCRoqAf0Wvjc",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":  \"Alejandro\",\r\n    \"surname\": \"Cuxun\",\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxu@gmail.com\",\r\n    \"currentPassword\": \"12345678\",\r\n    \"password\": \"12345678\",\r\n    \"phone\": \"42874891\"\r\n}",
+							"raw": "{\r\n    \"name\":  \"Alejandro\",\r\n    \"surname\": \"Cuxun\",\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxu@gmail.com\",\r\n    \"currentPassword\": \"12345678\",\r\n    \"password\": \"123456789\",\r\n    \"phone\": \"34534220\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -901,7 +985,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/68163047a980e41044d1599b",
+							"raw": "http://localhost:3000/almacenadora/users/6817712df4f0705f0fb9bd9b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -910,7 +994,7 @@
 							"path": [
 								"almacenadora",
 								"users",
-								"68163047a980e41044d1599b"
+								"6817712df4f0705f0fb9bd9b"
 							]
 						}
 					},
@@ -923,7 +1007,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE2MzA0N2E5ODBlNDEwNDRkMTU5OWIiLCJpYXQiOjE3NDYyODQ2MjAsImV4cCI6MTc0NjI5MTgyMH0.E06kwK_IPMNr2AhekMZ4gaA1glHzuUWPJRpLVXq417A",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE3Njk4OGVlOTc2MzgwMTgyY2YwMjYiLCJpYXQiOjE3NDYzNjcyMDYsImV4cCI6MTc0NjM3NDQwNn0.4i94k6OQKfICi7CchTNfbmkYUXgEAatnCRoqAf0Wvjc",
 								"type": "text"
 							}
 						],
@@ -937,7 +1021,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/role/68163047a980e41044d1599b",
+							"raw": "http://localhost:3000/almacenadora/users/role/6817712df4f0705f0fb9bd9b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -947,7 +1031,7 @@
 								"almacenadora",
 								"users",
 								"role",
-								"68163047a980e41044d1599b"
+								"6817712df4f0705f0fb9bd9b"
 							]
 						}
 					},
@@ -960,7 +1044,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE2MmI3MDQyMmZlNWNiNzE3YzJmZDciLCJpYXQiOjE3NDYyODczNDEsImV4cCI6MTc0NjI5NDU0MX0.pBrL3UHJf6lQOGD3JcHuVeh3IhyzxewP949CEBQmLSw",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE3Njk4OGVlOTc2MzgwMTgyY2YwMjYiLCJpYXQiOjE3NDYzNjcyMDYsImV4cCI6MTc0NjM3NDQwNn0.4i94k6OQKfICi7CchTNfbmkYUXgEAatnCRoqAf0Wvjc",
 								"type": "text"
 							}
 						],
@@ -974,7 +1058,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/68163047a980e41044d1599b",
+							"raw": "http://localhost:3000/almacenadora/users/6817712df4f0705f0fb9bd9b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -983,7 +1067,158 @@
 							"path": [
 								"almacenadora",
 								"users",
-								"68163047a980e41044d1599b"
+								"6817712df4f0705f0fb9bd9b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Informes",
+			"item": [
+				{
+					"name": "Cantidad de cada Producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/informe/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"informe",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cantidad de cada Producto por ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/informe/product/6817a6f1347ac02783776f4c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"informe",
+								"product",
+								"6817a6f1347ac02783776f4c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total de Productos en Stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/informe/totalStock/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"informe",
+								"totalStock",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valor de Inventario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/informe/totalValue/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"informe",
+								"totalValue",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Informe de Movimientos de Inventario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/informe/resumen?tipo=entrada&desde=2025-05-04&hasta=2025-05-04",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"informe",
+								"resumen"
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "entrada"
+								},
+								{
+									"key": "desde",
+									"value": "2025-05-04"
+								},
+								{
+									"key": "hasta",
+									"value": "2025-05-04"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estadisticas Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/almacenadora/informe/estadisticas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"almacenadora",
+								"informe",
+								"estadisticas"
 							]
 						}
 					},

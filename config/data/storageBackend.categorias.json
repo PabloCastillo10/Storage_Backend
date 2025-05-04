@@ -1,24 +1,32 @@
 [{
   "_id": {
-    "$oid": "681030a47fbe35a01236a00f"
+    "$oid": "681775356370757af705f813"
   },
-  "name": "carnets",
-  "description": "ola",
+  "name": "libros",
+  "description": "Libros de buena calidad",
   "status": true
 },
 {
   "_id": {
-    "$oid": "6810330c7fbe35a01236a022"
+    "$oid": "681775906370757af705f815"
   },
-  "name": "ejemplo update",
-  "description": "gg",
+  "name": "frutas",
+  "description": "Frutas de buena calidad",
   "status": true
 },
 {
   "_id": {
-    "$oid": "6812d49110d49138d4edaf94"
+    "$oid": "681776343bb6b2479150ad2e"
   },
-  "name": "Prueba",
-  "description": "Prueba",
+  "name": "verduras",
+  "description": "Verduras de buena calidad",
+  "status": true
+},
+{
+  "_id": {
+    "$oid": "681776533bb6b2479150ad32"
+  },
+  "name": "carnes",
+  "description": "Carnes de buena calidad",
   "status": true
 }]

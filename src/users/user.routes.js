@@ -3,7 +3,7 @@ import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 import { deleteFileOnError } from "../middlewares/delete-file-on-error.js"
-import { deleteUser, getUserById, getUsers, login, register, updateRole, updateUser } from "./user.controller.js";
+import { deleteUser, getUserById, getUserByRole, getUsers, login, register, updateRole, updateUser } from "./user.controller.js";
 
 const router = Router();
 
@@ -31,6 +31,11 @@ router.get(
         validarCampos
     ],
     getUserById
+)
+
+router.get(
+    "/role/:role",
+    getUserByRole
 )
 
 router.put(

@@ -18,7 +18,6 @@ const ProveedorSchema = Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Producto',
-            required: [true, "Product is required!"]
         }
     ],
 

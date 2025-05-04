@@ -25,9 +25,16 @@ export const errorName = async (name = "", { req }) => {
     }
 };
 
-export const productForName = async (products = "") => {
-    const existe = await Producto.findOne({ name: products });
-    if (!existe) {
-        throw new Error(`El producto ${products} no se encontró!`);
+export const productForName = async (productos = "") => {
+    if (!productos) {
+        return;
     }
+
+    const existe = await Producto.findOne({ name: productos });
+
+    if (!existe) {
+        throw new Error(`El producto '${productos}' no se encontró.`);
+    }
+
+    return existe;
 };
