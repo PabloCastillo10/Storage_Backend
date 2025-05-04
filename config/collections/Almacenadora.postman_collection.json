@@ -147,31 +147,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Buscar por Nombre",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/almacenadora/categorias/name/aña",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"almacenadora",
-								"categorias",
-								"name",
-								"aña"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -674,10 +649,10 @@
 			]
 		},
 		{
-			"name": "Users",
+			"name": "Movimientos",
 			"item": [
 				{
-					"name": "Register",
+					"name": "registrarEntrada",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -691,7 +666,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/register",
+							"raw": "http://localhost:3000/almacenadora/movimientos/entry",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -699,15 +674,15 @@
 							"port": "3000",
 							"path": [
 								"almacenadora",
-								"users",
-								"register"
+								"movimientos",
+								"entry"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Login",
+					"name": "registrarSalida",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -721,7 +696,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/login",
+							"raw": "http://localhost:3000/almacenadora/movimientos/exit",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -729,8 +704,8 @@
 							"port": "3000",
 							"path": [
 								"almacenadora",
-								"users",
-								"login"
+								"movimientos",
+								"exit"
 							]
 						}
 					},
