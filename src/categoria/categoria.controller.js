@@ -78,6 +78,25 @@ export const getCategoryById = async (req, res) => {
     }
 }
 
+export const getCategoryByName = async (req, res) => {
+    try {
+        const { name } = req.params;
+        const category = await Categoria.findOne({ name: name });
+        res.status(200).json({
+            success: true,
+            msg: "Categoria obtenida exitosamente!!",
+            category
+        })
+    } catch (error) {
+
+        return res.status(500).json({
+            success: false,
+            msg: "Error al buscar categoria",
+            error: error.message
+        })
+    }
+}
+
 export const updateCategory = async (req, res = response) => {
     try {
         
