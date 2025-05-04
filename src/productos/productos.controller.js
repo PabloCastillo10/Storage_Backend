@@ -147,16 +147,20 @@ export const updateProduct = async (req, res) => {
         await existenteProductById(id);
 
         const producto = await Producto.findById(id);
+        
         await statusProduct(producto);
         await verificarProductoExistente(name, producto);
 
         const categoria = await Categoria.findOne({name: data.categoria});
+        const proveedor = await Proveedor.findOne({name: data.proveedor});
         await categoriaNoExistente(data.categoria, categoria);
 
         data.categoria = categoria._id;
+        data.proveedor = proveedor._id;
 
         const productoActualizado = await Producto.findByIdAndUpdate(id, data, { new: true })
-            .populate('categoria', 'name');
+            .populate('categoria', 'name')
+            .populate('proveedor', 'name');
 
         res.status(200).json({
             msg: "Producto actualizado",
