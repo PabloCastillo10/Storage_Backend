@@ -12,6 +12,7 @@ import proveedorRoutes from "../src/proveedores/proveedor.routes.js";
 import clienteRoutes from "../src/clientes/cliente.routes.js";
 import movimientoRoutes from "../src/movimientos/movimiento.routes.js"
 import userRoutes from "../src/users/user.routes.js";
+import informeRoutes from "../src/informes/informe.routes.js";
 import { createAdmin } from '../src/users/user.controller.js';
 
 const configurarMiddlewares = (app) => {
@@ -30,6 +31,7 @@ const configurarRutas = (app) => {
     app.use('/almacenadora/clientes', clienteRoutes);
     app.use('/almacenadora/movimientos', movimientoRoutes);
     app.use('/almacenadora/users', userRoutes);
+    app.use('/almacenadora/informe', informeRoutes);
 }
 
 const conectarDB = async () => {

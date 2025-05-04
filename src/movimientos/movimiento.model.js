@@ -28,6 +28,8 @@ const movimientoSchema = new mongoose.Schema({
     destino: { 
         type: String // solo para salidas
     }, 
+}, {
+    versionKey: false
 });
  
 export default mongoose.model('Movimiento', movimientoSchema);
