@@ -1,38 +1,63 @@
 [{
   "_id": {
-    "$oid": "6813aa6b5e35000538e4bbbd"
+    "$oid": "6817b65be25ffd6c6e123ac6"
   },
-  "name": "Luis",
-  "contact": "luisSanchez@example.com",
+  "name": "mario",
+  "contact": "mario@gmail.com",
   "products": [
     {
-      "$oid": "6812d49f10d49138d4edaf97"
+      "$oid": "6817a6f1347ac02783776f4c"
+    },
+    {
+      "$oid": "6817ac0f97290d9282ebca71"
     }
   ],
   "status": true,
   "createdAt": {
-    "$date": "2025-05-01T17:07:55.898Z"
+    "$date": "2025-05-04T18:47:55.932Z"
   },
   "updatedAt": {
-    "$date": "2025-05-01T17:07:55.898Z"
+    "$date": "2025-05-04T18:47:55.932Z"
   }
 },
 {
   "_id": {
-    "$oid": "6813aaaf5e35000538e4bbc5"
+    "$oid": "6817b675e25ffd6c6e123ace"
   },
-  "name": "Juan",
-  "contact": "juan@example.com",
+  "name": "marcos",
+  "contact": "marcos@gmail.com",
   "products": [
     {
-      "$oid": "681030ae7fbe35a01236a012"
+      "$oid": "6817ac0f97290d9282ebca71"
+    },
+    {
+      "$oid": "6817af0e290412ef1ce20537"
     }
   ],
   "status": true,
   "createdAt": {
-    "$date": "2025-05-01T17:09:03.123Z"
+    "$date": "2025-05-04T18:48:21.105Z"
   },
   "updatedAt": {
-    "$date": "2025-05-01T18:14:49.723Z"
+    "$date": "2025-05-04T18:48:21.105Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6817b69fe25ffd6c6e123ae0"
+  },
+  "name": "daniel",
+  "contact": "daniel@gmail.com",
+  "products": [
+    {
+      "$oid": "6817ac0f97290d9282ebca71"
+    }
+  ],
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-04T18:49:03.454Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-04T18:52:51.454Z"
   }
 }]

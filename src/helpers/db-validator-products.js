@@ -13,9 +13,9 @@ export const existenteProductById = async (id = '') => {
     }
 }
 
-export const statusProduct = async (producto) => {
+export const statusProduct = async (productos) => {
     
-    if (producto.status === false) {
+    if (productos.status === false) {
         throw new Error('Producto desactivado o ya esta desactivado');
     }
 }

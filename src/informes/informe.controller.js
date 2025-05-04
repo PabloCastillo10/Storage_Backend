@@ -9,6 +9,8 @@ export const getQuantityProducts = async (req, res) => {
     try {
 
         const productos = await Producto.find({ status: true }, { name: 1, stock: 1 });
+
+        await verificarProductos(productos);
         
         res.status(200).json({
             msg: "Productos obtenidos",
@@ -28,13 +30,14 @@ export const getQuantityProductById = async (req, res) => {
     try {
         await existenteProductById(id);
 
-        const producto = await Producto.findById(id, { name: 1, stock: 1 });
+        const productos = await Producto.findById(id, { name: 1, stock: 1 });
 
-        await statusProduct(producto);
+        await verificarProductos(productos);
+        await statusProduct(productos);
         
         res.status(200).json({
             msg: "Producto encontrado",
-            producto
+            productos
         })
     } catch (error) {
         console.log(error);
@@ -140,11 +143,7 @@ export const estadisticasProductos = async (req, res) => {
             .populate('producto', 'name stock status')
             .exec()
 
-        if (!movimientos || movimientos.length === 0) {
-            return res.status(404).json({
-                msg: "No se encontraron movimientos en la base de datos"
-            })
-        }
+        await verificarMovimientos(movimientos);
 
         const statsMap = new Map();
 

@@ -1,6 +1,7 @@
 import { response, request } from "express";
 import Proveedor from "../proveedores/proveedor.model.js";
 import Producto from "../productos/productos.model.js";
+import { productForName } from "../helpers/db-validator-proveedores.js";
 
 export const saveProveedor = async (req, res) => {
     try {
@@ -8,6 +9,10 @@ export const saveProveedor = async (req, res) => {
         const nombresProductos = Array.isArray(data.products) ? data.products : [data.products];
 
         const productos = await Producto.find({ name: { $in: nombresProductos } });
+
+        for (const producto of nombresProductos) {
+            await productForName(producto);
+        }
 
         const newProveedor = new Proveedor({
             ...data,
@@ -17,14 +22,14 @@ export const saveProveedor = async (req, res) => {
         await newProveedor.save();
 
         const proveedorGuardado = await Proveedor.findById(newProveedor._id)
-            .populate("products", "name");
+        .populate("products", "name");
 
         res.status(200).json({
             success: true,
             msg: "Proveedor saved!",
             proveedor: proveedorGuardado,
         });
-
+        
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -42,17 +47,17 @@ export const getProveedores = async (req = request, res = response) => {
         const [total, proveedores] = await Promise.all([
             Proveedor.countDocuments(query),
             Proveedor.find(query)
-                .populate('products', 'name')
+            .populate('products', 'name')
                 .skip(Number(desde))
                 .limit(Number(limite))
         ]);
-
+        
         res.status(200).json({
             success: true,
             total,
             proveedores : proveedores,
         });
-
+        
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -64,17 +69,17 @@ export const getProveedores = async (req = request, res = response) => {
 
 export const getProveedoresById = async (req, res) => {
     const { id } = req.params;
-
+    
     try {
         const proveedor = await Proveedor.findById(id)
             .populate("products", "name");
-
+            
         if (!proveedor) {
             return res.status(404).json({
                 msg: `Proveedor with id ${id} does not exist!`,
             });
         }
-
+        
         res.status(200).json({
             msg: "Proveedor found!",
             proveedor: proveedor,
@@ -91,21 +96,27 @@ export const getProveedoresById = async (req, res) => {
 export const updateProveedor = async (req, res) => {
     try {
         const { id } = req.params;
-        const { products, ...data } = req.body;
+        const { products, name, ...data } = req.body;
         const proveedor = await Proveedor.findById(id);
+        
+        if (products && products.length > 0) {
+            for (const producto of products) {
+                await productForName(producto);
+            }
+        }
 
         if (!proveedor) {
             return res.status(404).json({
                 msg: `Proveedor with id ${id} does not exist!`,
             });
         }
-
+        
         if (products) {
             const productosActualizados = await Producto.find({ name: { $in: products } });
-
+            
             data.products = productosActualizados.map(producto => producto._id);
         }
-
+        
         const proveedorActualizado = await Proveedor.findByIdAndUpdate(id, data, { new: true })
             .populate('products', 'name');
 
@@ -115,6 +126,7 @@ export const updateProveedor = async (req, res) => {
         });
 
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             msg: "Error updating Proveedor!",
             error: error.message

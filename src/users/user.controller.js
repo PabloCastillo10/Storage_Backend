@@ -2,7 +2,7 @@ import User from "./user.model.js";
 import { hash } from "argon2";
 import { generateJWT } from "../helpers/generate-jwt.js";
 import { request, response } from "express";
-import { coincidirUsername, crearAdminSiNoExiste, existeUser, existeUserById, noActualizarAdmin, pedirPassword, phoneLength, soloAdmin, statusUser, updatePerfil, validarPasswordParaEliminar, validarPasswordUpdate, validarUsernameParaEliminar, verificarContraseña, verificarUsuarioExistente } from "../helpers/db-validator-users.js";
+import { coincidirUsername, crearAdminSiNoExiste, existeUser, existeUserById, noActualizarAdmin, noExistenUserRole, passwordLength, pedirPassword, phoneLength, soloAdmin, statusUser, updatePerfil, validarPasswordParaEliminar, validarPasswordUpdate, validarRole, validarUsernameParaEliminar, verificarContraseña, verificarUsuarioExistente } from "../helpers/db-validator-users.js";
 
 export const login = async (req, res) => {
 
@@ -36,7 +36,6 @@ export const login = async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
         return res.status(500).json({
             success: false,
             msg: "Error al iniciar sesión",
@@ -49,12 +48,13 @@ export const register = async (req, res) => {
     try {
 
         const data = req.body;
-        const { phone } = req.body;
+        const { phone, password } = req.body;
 
         await phoneLength(phone);
-
+        await passwordLength(password);
+        
         const encryptedPassword = await hash(data.password);
-
+        
         const user = await User.create({
             name: data.name,
             surname: data.surname,
@@ -63,7 +63,7 @@ export const register = async (req, res) => {
             phone: data.phone,
             password: encryptedPassword
         });
-
+        
         res.status(200).json({
             success: true,
             msg: 'Usuario registrado exitosamente!!',
@@ -83,24 +83,24 @@ export const register = async (req, res) => {
 
 export const getUsers = async (req = request, res = response) => {
     try {
-
+        
         const { limite = 10, desde = 0 } = req.query;
         const query = { status: true };
-
+        
         const [ total, users ] = await Promise.all([
             User.countDocuments(query),
             User.find(query)
             .skip(Number(desde))
             .limit(Number(limite))
         ])
-
+        
         res.status(200).json({
             success: true,
             total,
             msg: "Usuarios obtenidos exitosamente!!",
             users
         })
-    
+        
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -135,6 +135,31 @@ export const getUserById = async (req, res) => {
     }
 }
 
+export const getUserByRole = async (req, res) => {
+    try {
+        const { role } = req.params;
+
+        await validarRole(role);
+
+        const users = await User.find({ role });
+
+        await noExistenUserRole(users, role);
+
+        res.status(200).json({
+            success: true,
+            msg: "Usuarios obtenidos exitosamente!!",
+            users
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            msg: "Error al buscar usuarios por rol",
+            error: error.message
+        })
+    }
+}
+
 export const updateUser = async (req, res = response) => {
     try {
 
@@ -143,10 +168,11 @@ export const updateUser = async (req, res = response) => {
         let { username, phone } = req.body;
         
         await existeUserById(id);
-
+        
         const user = await User.findById(id);
-
+        
         await phoneLength(phone);
+        await passwordLength(password);
         await noActualizarAdmin(id);
         await updatePerfil(req, id);
         await verificarUsuarioExistente(username, user);

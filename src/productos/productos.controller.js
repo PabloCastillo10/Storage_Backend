@@ -1,4 +1,3 @@
-import { request, response } from "express";
 import Producto  from "../productos/productos.model.js";
 import Categoria from "../categoria/categoria.model.js";
 import { categoriaNoExistente, existenteProductById, statusProduct, verificarProductoExistente, existenteProveedor } from "../helpers/db-validator-products.js";
@@ -84,19 +83,19 @@ export const searchFlexible = async (req, res) => {
         productos = await Producto.find({
             name: termino,
             status: true,
-        }).populate("categoria", "name").populate("proveedor", "name");
+        }).populate("categoria", "name").populate("proveedor", "name")
 
         if (productos.length > 0) {
             return res.status(200).json({
                 msg: "Productos encontrados por nombre",
                 productos,
-            });
+            })
         }
 
         const categorias = await Categoria.find({
             name: { $regex: new RegExp(`^${termino}$`, 'i') },
             status: true,
-        });
+        })
 
         if (categorias.length > 0) {
             const categoriaIds = categorias.map(cat => cat._id);
@@ -105,7 +104,7 @@ export const searchFlexible = async (req, res) => {
                 categoria: { $in: categoriaIds },
                 status: true,
             }).populate("categoria", "name")
-            .populate("proveedor", "name");
+            .populate("proveedor", "name")
 
             if (productos.length > 0) {
                 return res.status(200).json({
@@ -116,20 +115,33 @@ export const searchFlexible = async (req, res) => {
         }
 
         const fecha = new Date(termino);
+
         if (!isNaN(fecha.getTime())) {
+            const inicioDia = new Date(fecha.setUTCHours(0, 0, 0, 0));
+            const finDia = new Date(inicioDia).setUTCHours(23, 59, 59, 999);
+
             productos = await Producto.find({
-                fechaEntrada: { $gte: fecha },
+                fechaEntrada: { $gte: inicioDia, $lt: new Date(finDia) },
                 status: true,
             }).populate("categoria", "name").populate("proveedor", "name");
 
-            return res.status(200).json({
-                msg: "Productos encontrados por fecha de entrada",
-                productos,
-            });
+
+            if (productos.length > 0) {
+                return res.status(200).json({
+                    msg: "Productos encontrados por fecha de entrada",
+                    productos,
+                });
+            } else {
+                return res.status(404).json({
+                    msg: "No se encontraron productos en la fecha ingresada",
+                    productos: [],
+                });
+            }
         }
+
         res.status(404).json({
             msg: "No se encontraron productos que coincidan",
-        });
+        })
     } catch (error) {
         res.status(500).json({
             msg: "Error al buscar productos",
@@ -157,9 +169,11 @@ export const updateProduct = async (req, res) => {
         await existenteProveedor(data.proveedor, proveedor);
 
         data.categoria = categoria._id;
+        data.proveedor = proveedor._id;
 
         const productoActualizado = await Producto.findByIdAndUpdate(id, data, { new: true })
-            .populate('categoria', 'name');
+            .populate('categoria', 'name')
+            .populate('proveedor', 'name');
 
         res.status(200).json({
             msg: "Producto actualizado",
@@ -167,7 +181,6 @@ export const updateProduct = async (req, res) => {
         });
 
       } catch (error) {
-        console.log(error);
         res.status(500).json({
             msg: "Error al actualizar el producto",
             error: error.message

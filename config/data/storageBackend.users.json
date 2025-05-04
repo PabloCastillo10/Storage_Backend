@@ -1,38 +1,57 @@
 [{
   "_id": {
-    "$oid": "6810d6af7dd63f87d18add04"
+    "$oid": "681770acf4f0705f0fb9bd95"
   },
-  "name": "Pablo",
+  "name": "pablo",
   "surname": "Castillo",
   "username": "pablo10",
   "email": "pablo10@gmail.com",
-  "password": "$argon2id$v=19$m=65536,t=3,p=4$2CEstvEWWnRsS5aiHd7rrA$wZI9a+3y0KYdAqp7FxYnaFkG9QfI2qywN9gmex2zk9A",
-  "phone": "32532439",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$uCVMlq2hZcdnUdzkF8juyw$sQQlpb/j8l0pkStv3kNSOjHRqzvHQSEvmFaDf+bwUJ4",
+  "phone": "36424797",
   "role": "EMPLOYEE",
   "status": true,
   "createdAt": {
-    "$date": "2025-04-29T13:39:59.660Z"
+    "$date": "2025-05-04T13:50:36.178Z"
   },
   "updatedAt": {
-    "$date": "2025-04-29T13:39:59.660Z"
+    "$date": "2025-05-04T14:01:25.070Z"
   }
 },
 {
   "_id": {
-    "$oid": "6810de4217ed9342aff5db5f"
+    "$oid": "68177104f4f0705f0fb9bd99"
   },
-  "name": "Kevin",
+  "name": "kevin",
   "surname": "Gutierrez",
   "username": "kevin123",
   "email": "kevin@gmail.com",
-  "password": "$argon2id$v=19$m=65536,t=3,p=4$7/eJWWHLG+qVATZHijxKKw$qNUwXNRWAA9jvXvIZaFCXoCyWqORgZZ/VabMLmZs4yo",
-  "phone": "32367540",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$GLVI+H23ymO5WEXeUP8NeA$kE8BBR8XNr8kTl9hyG6YNt1NJ6Ezp8MkLRWDiFqxpEA",
+  "phone": "76554367",
   "role": "EMPLOYEE",
   "status": true,
   "createdAt": {
-    "$date": "2025-04-29T14:12:18.383Z"
+    "$date": "2025-05-04T13:52:04.829Z"
   },
   "updatedAt": {
-    "$date": "2025-04-29T16:35:39.899Z"
+    "$date": "2025-05-04T13:52:04.829Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6817712df4f0705f0fb9bd9b"
+  },
+  "name": "alejandro",
+  "surname": "Cuxun",
+  "username": "cuxun123",
+  "email": "cuxun@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$HDRjS4Bvvg+soJ2Cu1KtbA$IDDuPF2Hltl0z8KYwLbv5lMyd/gUmrARwQnN49MWcXM",
+  "phone": "34534220",
+  "role": "EMPLOYEE",
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-04T13:52:45.147Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-04T14:06:35.195Z"
   }
 }]

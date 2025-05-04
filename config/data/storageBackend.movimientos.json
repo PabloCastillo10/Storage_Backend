@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "6817b91850174db1ddecb7ea"
+  },
+  "producto": {
+    "$oid": "6817ac0f97290d9282ebca71"
+  },
+  "tipo": "entrada",
+  "cantidad": 15,
+  "fecha": {
+    "$date": "2025-05-04T18:53:27.286Z"
+  },
+  "empleado": {
+    "$oid": "68177104f4f0705f0fb9bd99"
+  }
+},
+{
+  "_id": {
+    "$oid": "6817b95650174db1ddecb7f2"
+  },
+  "producto": {
+    "$oid": "6817ac0f97290d9282ebca71"
+  },
+  "tipo": "salida",
+  "cantidad": 5,
+  "fecha": {
+    "$date": "2025-05-04T18:53:27.286Z"
+  },
+  "empleado": {
+    "$oid": "68177104f4f0705f0fb9bd99"
+  },
+  "motivo": "Porque se pudrieron XD",
+  "destino": "Basura JAJAJA"
+}]

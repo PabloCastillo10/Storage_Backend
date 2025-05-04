@@ -139,11 +139,30 @@ export const phoneLength = async (phone = ' ') => {
     }
 }
 
+export const passwordLength = async (password = ' ') => {
+
+    if (password.length > 10 || password.length < 8) {
+        throw new Error('La contraseña debe contener minimo 8 caracteres y maximo 10 caracteres');
+    }
+}
+
 export const validarPasswordParaEliminar = async (user, password) => {
 
     const validPassword = await verify(user.password, password);
     if (!validPassword) {
         throw new Error('Contraseña incorrecta');
+    }
+}
+
+export const validarRole = async (role = '') => {
+    if (!["EMPLOYEE", "ADMIN"].includes(role)) {
+        throw new Error("Role invalido, solo se permiten 'EMPLOYEE' o 'ADMIN'");
+    }
+}
+
+export const noExistenUserRole = async (users, role) => {
+    if (users.length === 0) {
+        throw new Error(`No se encontraron usuarios con el rol ${ role }`);
     }
 }
 
