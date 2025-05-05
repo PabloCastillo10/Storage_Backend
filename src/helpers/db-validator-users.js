@@ -73,7 +73,7 @@ export const noActualizarAdmin = async (id) => {
 
 export const updatePerfil = async (req, id) => {
 
-    if (req.user.id !== id && req.user.role !== "ADMIN") {
+    if (req.user._id.toString() !== id.toString() && req.user.role !== "ADMIN") {
         throw new Error('No tienes permisos para actualizar o eliminar un perfil que no es tuyo');
     }
 }

@@ -39,12 +39,8 @@ router.get(
 )
 
 router.put(
-    "/:id",
-    [
-        validarJWT,
-        check("id", "Invalid ID").not().isEmpty(),
-        validarCampos
-    ],
+    "/",
+    validarJWT,
     updateUser
 )
 
@@ -60,10 +56,9 @@ router.put(
 )
 
 router.delete(
-    "/:id",
+    "/",
     [
         validarJWT,
-        check("id", "Invalid ID").not().isEmpty(),
         validarCampos
     ],
     deleteUser

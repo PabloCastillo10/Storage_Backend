@@ -3,8 +3,7 @@
 		"_postman_id": "d927e548-5320-4a01-ae14-fe3f48913c81",
 		"name": "Almacenadora",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "41997069",
-		"_collection_link": "https://a44444-6430.postman.co/workspace/Storage~af3ed1c0-2b94-4b96-916b-3161f620ed37/collection/41997069-d927e548-5320-4a01-ae14-fe3f48913c81?action=share&source=collection_link&creator=41997069"
+		"_exporter_id": "41997069"
 	},
 	"item": [
 		{
@@ -816,7 +815,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxun@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"username\": \"Kevin123\",\r\n    \"email\": \"kevin@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -946,13 +945,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE3Njk4OGVlOTc2MzgwMTgyY2YwMjYiLCJpYXQiOjE3NDYzNjcyMDYsImV4cCI6MTc0NjM3NDQwNn0.4i94k6OQKfICi7CchTNfbmkYUXgEAatnCRoqAf0Wvjc",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE3NzBhY2Y0ZjA3MDVmMGZiOWJkOTUiLCJpYXQiOjE3NDY0NTI0NDksImV4cCI6MTc0NjQ1OTY0OX0.DuUdkck7bc-OeGRoN5IE9eql2E0CHeh3VCrg2mzvZ-M",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":  \"Alejandro\",\r\n    \"surname\": \"Cuxun\",\r\n    \"username\": \"Cuxun123\",\r\n    \"email\": \"cuxu@gmail.com\",\r\n    \"currentPassword\": \"12345678\",\r\n    \"password\": \"123456789\",\r\n    \"phone\": \"34534220\"\r\n}",
+							"raw": "{\r\n    \"name\":  \"Pablo\",\r\n    \"surname\": \"Castillo\",\r\n    \"username\": \"Pablo10\",\r\n    \"email\": \"pablo@gmail.com\",\r\n    \"currentPassword\": \"12345678\",\r\n    \"password\": \"12345678\",\r\n    \"phone\": \"36424797\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -960,7 +959,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/6817712df4f0705f0fb9bd9b",
+							"raw": "http://localhost:3000/almacenadora/users/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -969,7 +968,7 @@
 							"path": [
 								"almacenadora",
 								"users",
-								"6817712df4f0705f0fb9bd9b"
+								""
 							]
 						}
 					},
@@ -982,13 +981,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE3Njk4OGVlOTc2MzgwMTgyY2YwMjYiLCJpYXQiOjE3NDYzNjcyMDYsImV4cCI6MTc0NjM3NDQwNn0.4i94k6OQKfICi7CchTNfbmkYUXgEAatnCRoqAf0Wvjc",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE4YmIxMDJmNDhkNmNjNDMwNzU1NTEiLCJpYXQiOjE3NDY0NTMzNzUsImV4cCI6MTc0NjQ2MDU3NX0.CS0Efpke3-g6tg-5I2EUHLN8B5Mw2IgGBY7U0iFrVZ8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"role\": \"ADMIN\"\r\n}",
+							"raw": "{\r\n    \"role\": \"EMPLOYEE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -996,7 +995,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/role/6817712df4f0705f0fb9bd9b",
+							"raw": "http://localhost:3000/almacenadora/users/role/681770acf4f0705f0fb9bd95",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1006,7 +1005,7 @@
 								"almacenadora",
 								"users",
 								"role",
-								"6817712df4f0705f0fb9bd9b"
+								"681770acf4f0705f0fb9bd95"
 							]
 						}
 					},
@@ -1019,7 +1018,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE3Njk4OGVlOTc2MzgwMTgyY2YwMjYiLCJpYXQiOjE3NDYzNjcyMDYsImV4cCI6MTc0NjM3NDQwNn0.4i94k6OQKfICi7CchTNfbmkYUXgEAatnCRoqAf0Wvjc",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODE3NzEyZGY0ZjA3MDVmMGZiOWJkOWIiLCJpYXQiOjE3NDY0NTM0MDgsImV4cCI6MTc0NjQ2MDYwOH0.3Jg0mCzNb4OHzC1E9nRw0XS_8RQNzluaTsZgHu9H11Q",
 								"type": "text"
 							}
 						],
@@ -1033,7 +1032,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/almacenadora/users/6817712df4f0705f0fb9bd9b",
+							"raw": "http://localhost:3000/almacenadora/users/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1042,7 +1041,7 @@
 							"path": [
 								"almacenadora",
 								"users",
-								"6817712df4f0705f0fb9bd9b"
+								""
 							]
 						}
 					},
