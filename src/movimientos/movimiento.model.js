@@ -16,7 +16,7 @@ const movimientoSchema = new mongoose.Schema({
     },
     fecha: { 
         type: Date, 
-        default: Date.now()
+        default: Date.now
     },
     empleado: { 
         type: mongoose.Schema.Types.ObjectId,
