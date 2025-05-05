@@ -163,12 +163,10 @@ export const getUserByRole = async (req, res) => {
 export const updateUser = async (req, res = response) => {
     try {
 
-        const { id } = req.params;
+        const id = req.user._id;
         const { _id, email, role, password, currentPassword, ...data } = req.body;
         let { username, phone } = req.body;
-        
-        await existeUserById(id);
-        
+                
         const user = await User.findById(id);
         
         await phoneLength(phone);
@@ -231,13 +229,9 @@ export const deleteUser = async (req, res = response) => {
 
     try {
 
-        const { id } = req.params;
+        const id = req.user._id;
         const { password, username } = req.body;
-        
-        const authenticatedUser = req.user;
-        
-        await existeUserById(id);
-
+                
         const user = await User.findById(id);
         
         await noActualizarAdmin(id);
@@ -253,8 +247,7 @@ export const deleteUser = async (req, res = response) => {
         res.status(200).json({
             success: true,
             msg: 'Usuario eliminado exitosamente!!',
-            userDelete,
-            authenticatedUser
+            userDelete
         });
         
     } catch (error) {
