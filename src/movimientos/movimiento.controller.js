@@ -96,39 +96,37 @@ export const registrarSalida = async (req, res) => {
   }
 };
  
-export const historialMovimientos = async (req, res) => {
-    try {
-        const { id } = req.params;
+export const historialProductosMovimientos = async (req, res) => {
 
-        const producto = await Producto.findById(id);
-        if (!producto) {
-            return res.status(404).json({ msg: `Producto con ID '${id}' no encontrado` });
-        }
+  try {
+    // Obtener todos los movimientos
+    const movimientos = await Movimiento.find()
+        .sort({ fecha: -1 })  // Ordenar por fecha descendente
+        .populate('producto', 'name')  // Poblamos el campo 'producto' con el nombre
+        .populate('empleado', 'name'); // Poblamos el campo 'empleado' con el nombre
 
-        const movimientos = await Movimiento.find({ producto: id })
-            .sort({ fecha: -1 })
-            .populate('producto', 'name')
-            .populate('empleado', 'name');
+    if (movimientos.length === 0) {
+        return res.status(200).json({ msg: 'No hay movimientos registrados.' });
+    }
 
-        if (movimientos.length === 0) {
-            return res.status(200).json({ msg: `El producto '${producto.name}' no tiene movimientos registrados` });
-        }
-
-        const presentacionMovimientos = movimientos.map(movimiento => {
+    // Procesamos los movimientos para presentarlos de forma adecuada
+    const presentacionMovimientos = movimientos.map(movimiento => {
         const movObj = movimiento.toObject();
 
         return {
             ...movObj,
             producto: movimiento.producto?.name || 'Producto eliminado',
             empleado: movimiento.empleado?.name || 'Empleado eliminado',
-        }
-    })
+        };
+    });
 
+    // Respuesta exitosa con los movimientos
     res.status(200).json({
         success: true,
-        msg: "Historial de movimientos",
+        msg: 'Historial de todos los movimientos',
         presentacionMovimientos
-    })
+    });
+
 
     } catch (error) {
         res.status(500).json({
@@ -137,6 +135,47 @@ export const historialMovimientos = async (req, res) => {
         })
     }
 }
+
+export const historialMovimientos = async (req, res) => {
+  try {
+    // Obtener todos los movimientos
+    const movimientos = await Movimiento.find()
+        .sort({ fecha: -1 })  // Ordenar por fecha descendente
+        .populate('producto', 'name')  // Poblamos el campo 'producto' con el nombre
+        .populate('empleado', 'name'); // Poblamos el campo 'empleado' con el nombre
+
+    if (movimientos.length === 0) {
+        return res.status(200).json({ msg: 'No hay movimientos registrados.' });
+    }
+
+    // Procesamos los movimientos para presentarlos de forma adecuada
+    const presentacionMovimientos = movimientos.map(movimiento => {
+        const movObj = movimiento.toObject();
+
+        return {
+            ...movObj,
+            producto: movimiento.producto?.name || 'Producto eliminado',
+            empleado: movimiento.empleado?.name || 'Empleado eliminado',
+        };
+    });
+
+    // Respuesta exitosa con los movimientos
+    res.status(200).json({
+        success: true,
+        msg: 'Historial de todos los movimientos',
+        presentacionMovimientos
+    });
+
+    
+  } catch (error) {
+    // Manejo de errores
+    res.status(500).json({
+      msg: 'Error al obtener historial',
+      error: error.message
+    });
+  }
+};
+
 
 export const editarMovimiento = async (req, res) => {
   try {

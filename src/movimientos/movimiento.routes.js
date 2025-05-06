@@ -1,5 +1,5 @@
 import express from "express";
-import {registrarEntrada, registrarSalida, historialMovimientos, editarMovimiento} from './movimiento.controller.js'
+import {registrarEntrada, registrarSalida, historialMovimientos,historialProductosMovimientos, editarMovimiento} from './movimiento.controller.js'
 import {validarCampos}  from '../middlewares/validar-campos.js'
 import {check} from 'express-validator'
 import { validarCamposPermitidos } from "../middlewares/validar-edicion-movimiento.js";
@@ -11,8 +11,9 @@ router.get(
     [
         check("productId","Must be a valid ID").isMongoId()
     ],
-    historialMovimientos
+    historialProductosMovimientos
 );
+router.get('/',historialMovimientos);
 
 router.post("/entry", validarCampos, registrarEntrada);
 
