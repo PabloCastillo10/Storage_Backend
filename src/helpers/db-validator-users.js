@@ -67,7 +67,7 @@ export const noActualizarAdmin = async (id) => {
     const user = await User.findById(id);
     
     if (user.username === "administrador") {
-        throw new Error('No se puede actualizar o eliminar el ADMIN por defecto');
+        throw new Error('No se puede actualizar  el ADMIN por defecto');
     }
 }
 
@@ -89,23 +89,24 @@ export const verificarUsuarioExistente = async (username, user) => {
     }
 }
 
-export const validarPasswordUpdate = async (user, password, currentPassword) => {
+export const validarPasswordUpdate = async (user, currentPassword, password) => {
 
     if (password) {
         if (!currentPassword) {
             throw new Error('Debes proporcionar la contraseña actual para cambiarla');
         }
 
-        const verifyPassword = await verify(user.password, currentPassword);
+        const passwordValid = await verify(user.password, currentPassword);
 
-        if (!verifyPassword) {
+        if (!passwordValid) {
             throw new Error('Contraseña actual incorrecta');
         }
+
 
         user.password = await hash(password);
         await user.save();
     }
-}
+}   
 
 export const soloAdmin = async (req) => {
     

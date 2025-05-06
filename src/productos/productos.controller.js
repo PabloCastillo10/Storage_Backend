@@ -52,6 +52,26 @@ export const getProducts = async (req, res) => {
     }
 }
 
+export const getLowStockProducts = async (req, res) => {
+    try {
+        const productos = await Producto.find({
+            stock: { $lte: 5 },
+            status: true
+        }).populate("categoria", "name").populate("proveedor", "name");
+
+        res.status(200).json({
+            msg: "Productos con bajo stock obtenidos",
+            productos,
+        });
+    } catch (error) {
+        res.status(500).json({
+            msg: "Error al obtener productos con bajo stock",
+            error: error.message
+        });
+    }
+};
+
+
 export const getProductById = async (req, res) => {
     const { id } = req.params;
 

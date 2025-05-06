@@ -30,6 +30,8 @@ export const login = async (req, res) => {
             success: true,
             msg: "Sesión iniciada exitosamente!!",
             userDetails: {
+                _id : user.id,
+                role: user.role,
                 username: user.username,
                 token: token
             }
@@ -162,7 +164,6 @@ export const getUserByRole = async (req, res) => {
 
 export const updateUser = async (req, res = response) => {
     try {
-
         const id = req.user._id;
         const { _id, email, role, password, currentPassword, ...data } = req.body;
         let { username, phone } = req.body;
@@ -219,7 +220,7 @@ export const updateRole = async (req, res = response) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            msg: 'Error al actualizar Role',
+            msg: error.message,
             error: error.message
         });
     }
