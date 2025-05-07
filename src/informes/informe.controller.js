@@ -165,11 +165,8 @@ export const estadisticasProductos = async (req, res) => {
 
             const stat = statsMap.get(id);
 
-            if (mov.tipo === 'entrada') {
-                stat.entradas += 1;
-            } else if (mov.tipo === 'salida') {
-                stat.salidas += 1;
-            }
+            if (mov.tipo === 'entrada') stat.entradas += 1;
+            if (mov.tipo === 'salida') stat.salidas += 1;
 
             stat.totalMovimientos = stat.entradas + stat.salidas;
 
@@ -190,10 +187,11 @@ export const estadisticasProductos = async (req, res) => {
         const filePath = path.join(carpetaDescargas, fileName)
 
         if (!fs.existsSync(carpetaDescargas)) {
-            fs.mkdirSync(carpetaDescargas)
+            fs.mkdirSync(carpetaDescargas, { recursive: true });
         }
 
         const buffer = await generarExcelEstadisticas(estadisticas)
+       
 
         console.log("Guardando el archivo en:", filePath)
         fs.writeFileSync(filePath, buffer)
@@ -204,13 +202,15 @@ export const estadisticasProductos = async (req, res) => {
         const file = fs.createReadStream(filePath);
         file.pipe(res)
 
+        
+
         res.status(200).json({
             msg: "Estadísticas generales de productos",
             total: estadisticas.length,
             estadisticas
         })
 
-        file.on('end', () => {
+        file.on('close', () => {
             fs.unlinkSync(filePath);
         })
 
